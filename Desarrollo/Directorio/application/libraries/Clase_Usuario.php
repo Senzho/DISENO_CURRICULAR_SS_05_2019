@@ -1,5 +1,5 @@
-<?
-abstract class ClaseUsuario {
+<?php
+abstract class Clase_Usuario {
     const COLABORADOR = 1;
     const COORDINADOR_COMISION = 2;
     const ASESOR_CURRICULAR = 3;
