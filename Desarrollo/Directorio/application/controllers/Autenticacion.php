@@ -1,6 +1,10 @@
 <?php
 
 class Autenticacion extends CI_Controller {
+    private function mostrar_vista_principal($mensaje = '') {
+        $this->load->view('autenticacion/login', array('mensaje' => $mensaje));
+    }
+
     public function __construct() {
         parent::__construct();
         $this->load->helper('form');
@@ -9,7 +13,7 @@ class Autenticacion extends CI_Controller {
     }
 
     public function principal() {
-        $this->load->view('autenticacion/login');
+        $this->mostrar_vista_principal();
     }
 
     public function iniciar_sesion() {
@@ -18,6 +22,10 @@ class Autenticacion extends CI_Controller {
         $usuario = new Usuario();
         $usuario->set_i_usuario(new Modelo_Usuario());
         $usuario_existe = $usuario->existe($nick, $contraseña);
-        $usuario = $usuario->obtener_por_credenciales($nick, $contraseña);
+        if ($usuario_existe) {
+            $usuario = $usuario->obtener_por_credenciales($nick, $contraseña);
+        } else {
+            $this->mostrar_vista_principal('El usuario y/o contraseña no coinciden');
+        }
     }
 }
