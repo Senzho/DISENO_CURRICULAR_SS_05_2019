@@ -8,6 +8,8 @@ class Autenticacion extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helper('form');
+        $this->load->helper('url');
+        $this->load->library('session');
         $this->load->library('Usuario');
         $this->load->model('Modelo_Usuario', 'modelo_usuario');
     }
@@ -24,6 +26,12 @@ class Autenticacion extends CI_Controller {
         $usuario_existe = $usuario->existe($nick, $contraseña);
         if ($usuario_existe) {
             $usuario = $usuario->obtener_por_credenciales($nick, $contraseña);
+            $this->session->set_userdata('id', $usuario->get_id());
+            $this->session->set_userdata('nombre', $usuario->get_nombre());
+            $this->session->set_userdata('correo', $usuario->get_correo());
+            $this->session->set_userdata('region', $usuario->get_region());
+            $this->session->set_userdata('clase', $usuario->get_clase_usuario());
+            redirect('Inicio/principal', 'location');
         } else {
             $this->mostrar_vista_principal('El usuario y/o contraseña no coinciden');
         }
