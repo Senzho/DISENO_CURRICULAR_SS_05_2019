@@ -7,7 +7,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
     <nav>
-        <button class="" type="button" id="">Menú</button>
+        <?php echo form_open('Autenticacion/cerrar_sesion',array('id'=>'', 'class'=>''))?>
+            <button class="" type="submit" id="">Menú (cerrar sesión)</button>
+        </form>
         <h1>Proyectos curriculares</h1>
     </nav>
     <div>
@@ -17,26 +19,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div>
         <?php echo form_open('Inicio/principal',array('id'=>'', 'class'=>''))?>
             <select name="areaAcademica">
-                <option value="Económico - administrativa">Económico - administrativa</option>
-                <option value="todo" selected>Todas</option>
+                <option value="Económico - administrativa" <?php echo set_select('areaAcademica', 'Económico - administrativa'); ?>>Económico - administrativa</option>
+                <option value="todo" <?php echo set_select('areaAcademica', 'todo', TRUE); ?>>Todas</option>
             </select>
             <select name="region">
-                <option value="Xalapa">Xalapa</option>
-                <option value="Orizaba">Orizaba</option>
-                <option value="todo" selected>Todas</option>
+                <option value="Xalapa" <?php echo set_select('region', 'Xalapa'); ?>>Xalapa</option>
+                <option value="Orizaba" <?php echo set_select('region', 'Orizaba'); ?>>Orizaba</option>
+                <option value="todo" <?php echo set_select('region', 'todo', TRUE); ?>>Todas</option>
             </select>
             <select name="sede">
-                <option value="Xalapa">Xalapa</option>
-                <option value="todo" selected>Todas</option>
+                <option value="Xalapa" <?php echo set_select('sede', 'Xalapa'); ?>>Xalapa</option>
+                <option value="todo" <?php echo set_select('sede', 'todo', TRUE); ?>>Todas</option>
             </select>
             <select name="sistema">
-                <option value="Escolarizado">Escolarizado</option>
-                <option value="Abierto">Abierto</option>
-                <option value="todo" selected>Todos</option>
+                <option value="Escolarizado" <?php echo set_select('sistema', 'Escolarizado'); ?>>Escolarizado</option>
+                <option value="Abierto" <?php echo set_select('sistema', 'Abierto'); ?>>Abierto</option>
+                <option value="todo" <?php echo set_select('sistema', 'todo', TRUE); ?>>Todos</option>
             </select>
             <select name="trabajo">
-                <option value="Actualización">Actualización</option>
-                <option value="todo" selected>Todos</option>
+                <option value="Actualización" <?php echo set_select('trabajo', 'Actualización'); ?>>Actualización</option>
+                <option value="todo" <?php echo set_select('trabajo', 'todo', TRUE); ?>>Todos</option>
             </select>
             <button class="" type="submit" id="">Buscar</button>
         </form>
