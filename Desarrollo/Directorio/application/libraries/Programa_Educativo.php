@@ -66,4 +66,7 @@ class Programa_Educativo {
         }
         return $programas_educativos;
     }
+    public function obtener_programa_educativo() {
+        return $this->i_programa_educativo->obtener_programa_educativo($this->get_id());
+    }
 }

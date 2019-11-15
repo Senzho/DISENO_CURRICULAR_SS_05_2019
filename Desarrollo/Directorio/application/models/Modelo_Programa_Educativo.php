@@ -50,4 +50,14 @@ class Modelo_Programa_Educativo extends CI_Model implements I_Programa_Educativo
         }
         return $programas_educativos;
     }
+    public function obtener_programa_educativo($id) {
+        $this->load->database('siu');
+        $programa_educativo = new Programa_Educativo();
+        $programa_educativo->set_id('');
+        $consulta = $this->db->get_where('programaEducativo', array('nrc' => $id));
+        if ($consulta->num_rows() == 1) {
+            $programa_educativo = $this->obtener_objeto($consulta->row());
+        }
+        return $programa_educativo;
+    }
 }
