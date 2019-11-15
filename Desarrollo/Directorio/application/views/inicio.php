@@ -4,9 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 <head>
+    <link href="<?php echo base_url(); ?>css/popup.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>js/Asesoria.js"></script>
 </head>
 <body>
     <nav>
+        <!-- Formulario para poder cerrar sesión con el botón (temporal) -->
         <?php echo form_open('Autenticacion/cerrar_sesion',array('id'=>'', 'class'=>''))?>
             <button class="" type="submit" id="">Menú (cerrar sesión)</button>
         </form>
@@ -46,9 +50,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div>
         <?php
             foreach ($programas_educativos as $programa_educativo) {
-                echo '<div><label>' . $programa_educativo->get_nombre() . '</label></div>';
+                echo "<div id='" . $programa_educativo->get_id() . "' class='bloque_programa'><label>" . $programa_educativo->get_nombre() . "</label></div>";
             }
         ?>
+    </div>
+    <div id="menuProgramaEducativo" class="popup">
+        <a href="<?php echo $link_asesoria; ?>" class="popuptext" id="myPopup">Solicitar asesoría</a>
     </div>
 </body>
 </html>

@@ -37,11 +37,9 @@ class Inicio extends CI_Controller {
             $usuario->set_clase_usuario($this->session->userdata('clase'));
             $usuario->set_region($this->session->userdata('region'));
             $programas_educativos = $programa_educativo->obtener_por_permiso($usuario, $this->obtener_filtros_input());
-            $this->load->view('inicio', array('programas_educativos' => $programas_educativos));
+            $this->load->view('inicio', array('programas_educativos' => $programas_educativos, 'link_asesoria' => 'http://localhost/DisenoCurricular/index.php/Asesoria/solicitud/'));
         } else {
             redirect('Autenticacion/principal', 'location');
         }
     }
-
-    
 }

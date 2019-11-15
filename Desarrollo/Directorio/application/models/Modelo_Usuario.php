@@ -5,17 +5,17 @@ require_once(APPPATH.'libraries/Clase_Usuario.php');
 class Modelo_Usuario extends CI_Model implements I_Usuario {
     private function obtener_clase($clase) {
         $clase_usuario;
-        if ($clase === 1) {
+        if ($clase == 1) {
             $clase_usuario = Clase_Usuario::COLABORADOR;
-        } else if ($clase === 2) {
+        } else if ($clase == 2) {
             $clase_usuario = Clase_Usuario::COORDINADOR_COMISION;
-        } else if ($clase === 3) {
+        } else if ($clase == 3) {
             $clase_usuario = Clase_Usuario::ASESOR_CURRICULAR;
-        } else if ($clase === 4) {
+        } else if ($clase == 4) {
             $clase_usuario = Clase_Usuario::JEFE_DDC;
-        } else if ($clase === 5) {
+        } else if ($clase == 5) {
             $clase_usuario = Clase_Usuario::DIRECTOR_AREA_ACADEMICA;
-        } else if ($clase === 6) {
+        } else if ($clase == 6) {
             $clase_usuario = Clase_Usuario::SOLICITANTE;
         } else {
             $clase_usuario = Clase_Usuario::OBSERVADOR_PARTICULAR;

@@ -11,6 +11,15 @@ class Modelo_Programa_Educativo extends CI_Model implements I_Programa_Educativo
         }
         return $arreglo_where;
     }
+    private function obtener_objeto($fila) {
+        $programa_educativo = new Programa_Educativo();
+        $programa_educativo->set_id($fila->nrc);
+        $programa_educativo->set_area_academica($fila->areaAcademica);
+        $programa_educativo->set_nombre($fila->nombre);
+        $programa_educativo->set_region($fila->region);
+        $programa_educativo->set_sistema($fila->sistema);
+        return $programa_educativo;
+    }
 
     public function __construct(){
         $this->load->library('Programa_Educativo');
@@ -24,17 +33,21 @@ class Modelo_Programa_Educativo extends CI_Model implements I_Programa_Educativo
         $programas_educativos = array();
         $consulta = $this->db->get_where('programaEducativo', $this->obtener_where_desde_filtros($filtros));
         foreach ($consulta->result() as $fila) {
-            $programa_educativo = new Programa_Educativo();
-            $programa_educativo->set_id($fila->nrc);
-            $programa_educativo->set_area_academica($fila->areaAcademica);
-            $programa_educativo->set_nombre($fila->nombre);
-            $programa_educativo->set_region($fila->region);
-            $programa_educativo->set_sistema($fila->sistema);
+            $programa_educativo = $this->obtener_objeto($fila);
             array_push($programas_educativos, $programa_educativo);
         }
         return $programas_educativos;
     }
     public function obtener_de_solicitante($region, $filtros) {
-
+        $this->load->database('siu');
+        $programas_educativos = array();
+        $arreglo_where = $this->obtener_where_desde_filtros($filtros);
+        $arreglo_where['region'] = $region;
+        $consulta = $this->db->get_where('programaEducativo', $arreglo_where);
+        foreach ($consulta->result() as $fila) {
+            $programa_educativo = $this->obtener_objeto($fila);
+            array_push($programas_educativos, $programa_educativo);
+        }
+        return $programas_educativos;
     }
 }
