@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <nav>
         <button class="" type="button" id="">Menú</button>
         <h1><?php echo $programa_educativo->get_nombre();?></h1>
-        <?php echo form_open('Asesoria/registrar',array('id'=>'', 'class'=>''))?>
+        <?php echo form_open('Solicitud/registrar',array('id'=>'', 'class'=>''))?>
             <?php echo form_hidden('tipo', 'diseño'); ?>
             <?php echo form_hidden('id', $programa_educativo->get_id()); ?>
             <button class="" type="submit" id="">Listo</button>

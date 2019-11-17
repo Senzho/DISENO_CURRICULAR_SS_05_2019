@@ -2,11 +2,14 @@
 class Asesoria {
     private $id;
     private $estado;
+    private $tipo;
     private $fecha_solicitud;
     private $fecha_inicio;
     private $fecha_fin;
     private $usuario;
     private $programa_educativo;
+    
+    private $i_asesoria;
 
     public function __construct() {
 
@@ -23,6 +26,12 @@ class Asesoria {
     }
     public function get_estado() {
         return $this->estado;
+    }
+    public function set_tipo($tipo) {
+        $this->tipo = $tipo;
+    }
+    public function get_tipo() {
+        return $this->tipo;
     }
     public function set_fecha_solicitud($fecha_solicitud) {
         $this->fecha_solicitud = $fecha_solicitud;
@@ -55,7 +64,11 @@ class Asesoria {
         return $this->programa_educativo;
     }
 
-    public function registrar_solicitud() {
+    public function set_i_asesoria($i_asesoria) {
+        $this->i_asesoria = $i_asesoria;
+    }
 
+    public function registrar_solicitud() {
+        $this->i_asesoria->registrar($this);
     }
 }

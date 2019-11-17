@@ -4,9 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 <head>
-    <link href="<?php echo base_url(); ?>css/popup.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.4.1.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>js/Asesoria.js"></script>
+    <?php
+        if ($clase_usuario == Clase_Usuario::SOLICITANTE) {
+            echo "<link href='" . base_url() . "css/popup.css' rel='stylesheet' type='text/css'>";
+            echo "<script type='text/javascript' src='" . base_url() . "js/jquery-3.4.1.js' ></script>";
+            echo "<script type='text/javascript' src='" . base_url() . "js/Asesoria.js' ></script>";
+        }
+    ?>
 </head>
 <body>
     <nav>
@@ -54,8 +58,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
         ?>
     </div>
-    <div id="menuProgramaEducativo" class="popup">
-        <a href="<?php echo $link_asesoria; ?>" class="popuptext" id="myPopup">Solicitar asesoría</a>
-    </div>
+    <?php
+        if ($clase_usuario == Clase_Usuario::SOLICITANTE) {
+            echo "<div id='menuProgramaEducativo' class='popup'>";
+            echo "<a href='" . base_url() . "index.php/Solicitud/solicitud/' class='popuptext' id='myPopup'>Solicitar asesoría</a>";
+            echo "</div>";
+        }
+    ?>
 </body>
 </html>
