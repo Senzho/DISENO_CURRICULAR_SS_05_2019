@@ -10,6 +10,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             echo "<script type='text/javascript' src='" . base_url() . "js/jquery-3.4.1.js' ></script>";
             echo "<script type='text/javascript' src='" . base_url() . "js/Asesoria.js' ></script>";
         }
+        if ($clase_usuario == Clase_Usuario::JEFE_DDC) {
+            echo "<link href='" . base_url() . "css/modal.css' rel='stylesheet' type='text/css'>";
+            echo "<script type='text/javascript' src='" . base_url() . "js/jquery-3.4.1.js' ></script>";
+            echo "<script type='text/javascript' src='" . base_url() . "js/Modal.js' ></script>";
+        }
     ?>
 </head>
 <body>
@@ -22,7 +27,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </nav>
     <div>
         <button class="" type="button" id="">Nuevo programa</button>
-        <button class="" type="button" id="">Solicitudes</button>
+        <?php
+            if ($clase_usuario == Clase_Usuario::JEFE_DDC) {
+                echo "<button id='abrir_solicitudes' type='button'>Solicitudes</button>";
+            }
+        ?>
     </div>
     <div>
         <?php echo form_open('Inicio/principal',array('id'=>'', 'class'=>''))?>
@@ -63,6 +72,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             echo "<div id='menuProgramaEducativo' class='popup'>";
             echo "<a href='" . base_url() . "index.php/Solicitud/solicitud/' class='popuptext' id='myPopup'>Solicitar asesoría</a>";
             echo "</div>";
+        }
+        if ($mensaje > 0) {
+            $contenido;
+            switch($mensaje) {
+                case 1:
+                    $contenido = 'Lo sentimos, el programa educativo tiene un proceso de asesoría activo';
+                break;
+                default:
+                    $contenido = 'Ocurrió un error inesperado';
+                break;
+            }
+            echo('<label>' . $contenido . '</label>');
+        }
+        if ($clase_usuario == Clase_Usuario::JEFE_DDC) {
+            echo "<div id='myModal' class='modal'><div class='modal-content'><div id='espacio_modal'>";
+            echo "</div></div></div>";
         }
     ?>
 </body>

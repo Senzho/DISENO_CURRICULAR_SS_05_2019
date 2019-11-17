@@ -28,13 +28,13 @@ class Inicio extends CI_Controller {
         $this->load->model('Modelo_Programa_Educativo', 'modelo_programa_educativo');
     }
 
-    public function principal() {
+    public function principal($mensaje = 0) {
         if ($this->session->userdata('usuario')) {
             $programa_educativo = new Programa_Educativo();
             $programa_educativo->set_i_programa_educativo(new Modelo_Programa_Educativo());
             $usuario = unserialize($this->session->userdata('usuario'));
             $programas_educativos = $programa_educativo->obtener_por_permiso($usuario, $this->obtener_filtros_input());
-            $this->load->view('inicio', array('programas_educativos' => $programas_educativos, 'link_asesoria' => 'http://localhost/DisenoCurricular/index.php/Asesoria/solicitud/', 'clase_usuario' => $usuario->get_clase_usuario()));
+            $this->load->view('inicio', array('programas_educativos' => $programas_educativos, 'link_asesoria' => 'http://localhost/DisenoCurricular/index.php/Asesoria/solicitud/', 'clase_usuario' => $usuario->get_clase_usuario(), 'mensaje' => $mensaje));
         } else {
             redirect('Autenticacion/principal', 'location');
         }

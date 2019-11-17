@@ -69,4 +69,7 @@ class Programa_Educativo {
     public function obtener_programa_educativo() {
         return $this->i_programa_educativo->obtener_programa_educativo($this->get_id());
     }
+    public function tiene_asesoria_activa() {
+        return $this->i_programa_educativo->tiene_asesoria_activa($this->id);
+    }
 }

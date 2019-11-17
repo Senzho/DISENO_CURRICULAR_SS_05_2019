@@ -2,6 +2,8 @@
 interface_exists('I_Asesoria', FALSE) OR require_once(APPPATH.'libraries/I_Asesoria.php');
 
 class Modelo_Asesoria extends CI_Model implements I_Asesoria {
+    private $siu_db;
+
     private function obtener_arreglo($asesoria) {
         $arreglo = array();
         $arreglo['asesoria_estado'] = $asesoria->get_estado();
@@ -12,12 +14,12 @@ class Modelo_Asesoria extends CI_Model implements I_Asesoria {
         return $arreglo;
     }
     public function __construct(){
-        $this->load->database('diseñoCurricular');
+        $this->siu_db = $this->load->database('diseñoCurricular', TRUE);
         $this->load->library('Asesoria');
     }
     
     public function registrar($asesoria) {
         $arreglo = $this->obtener_arreglo($asesoria);
-        return $this->db->insert('asesoria', $arreglo);
+        return $this->siu_db->insert('asesoria', $arreglo);
     }
 }

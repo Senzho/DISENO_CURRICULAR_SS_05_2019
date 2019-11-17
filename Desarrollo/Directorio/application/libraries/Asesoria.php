@@ -69,6 +69,6 @@ class Asesoria {
     }
 
     public function registrar_solicitud() {
-        $this->i_asesoria->registrar($this);
+        return $this->i_asesoria->registrar($this);
     }
 }
