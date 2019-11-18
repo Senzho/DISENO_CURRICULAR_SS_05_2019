@@ -71,4 +71,7 @@ class Asesoria {
     public function registrar_solicitud() {
         return $this->i_asesoria->registrar($this);
     }
+    public function obtener_pendientes() {
+        return $this->i_asesoria->obtener_solicitudes_pendientes();
+    }
 }

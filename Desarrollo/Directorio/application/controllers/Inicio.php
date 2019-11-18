@@ -25,6 +25,8 @@ class Inicio extends CI_Controller {
         $this->load->library('session');
         $this->load->library('Programa_Educativo');
         $this->load->library('Usuario');
+        $this->load->library('Asesoria');
+        $this->load->model('Modelo_Asesoria', 'modelo_asesoria');
         $this->load->model('Modelo_Programa_Educativo', 'modelo_programa_educativo');
     }
 
@@ -34,7 +36,13 @@ class Inicio extends CI_Controller {
             $programa_educativo->set_i_programa_educativo(new Modelo_Programa_Educativo());
             $usuario = unserialize($this->session->userdata('usuario'));
             $programas_educativos = $programa_educativo->obtener_por_permiso($usuario, $this->obtener_filtros_input());
-            $this->load->view('inicio', array('programas_educativos' => $programas_educativos, 'link_asesoria' => 'http://localhost/DisenoCurricular/index.php/Asesoria/solicitud/', 'clase_usuario' => $usuario->get_clase_usuario(), 'mensaje' => $mensaje));
+            $arreglo = array('programas_educativos' => $programas_educativos, 'link_asesoria' => 'http://localhost/DisenoCurricular/index.php/Asesoria/solicitud/', 'clase_usuario' => $usuario->get_clase_usuario(), 'mensaje' => $mensaje);
+            if ($usuario->get_clase_usuario() == Clase_Usuario::JEFE_DDC) {
+                $asesoria = new Asesoria();
+                $asesoria->set_i_asesoria(new Modelo_Asesoria());
+                $arreglo['solicitudes'] = $asesoria->obtener_pendientes();
+            }
+            $this->load->view('inicio', $arreglo);
         } else {
             redirect('Autenticacion/principal', 'location');
         }

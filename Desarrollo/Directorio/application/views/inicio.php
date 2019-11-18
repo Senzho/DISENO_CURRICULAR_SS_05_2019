@@ -4,16 +4,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 <head>
+    <link href="<?php echo base_url();?>css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="<?php echo base_url();?>js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>js/bootstrap.min.js"></script>
     <?php
         if ($clase_usuario == Clase_Usuario::SOLICITANTE) {
             echo "<link href='" . base_url() . "css/popup.css' rel='stylesheet' type='text/css'>";
-            echo "<script type='text/javascript' src='" . base_url() . "js/jquery-3.4.1.js' ></script>";
             echo "<script type='text/javascript' src='" . base_url() . "js/Asesoria.js' ></script>";
         }
         if ($clase_usuario == Clase_Usuario::JEFE_DDC) {
-            echo "<link href='" . base_url() . "css/modal.css' rel='stylesheet' type='text/css'>";
             echo "<script type='text/javascript' src='" . base_url() . "js/jquery-3.4.1.js' ></script>";
-            echo "<script type='text/javascript' src='" . base_url() . "js/Modal.js' ></script>";
         }
     ?>
 </head>
@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <button class="" type="button" id="">Nuevo programa</button>
         <?php
             if ($clase_usuario == Clase_Usuario::JEFE_DDC) {
-                echo "<button id='abrir_solicitudes' type='button'>Solicitudes</button>";
+                echo "<button id='abrir_solicitudes' type='button' data-toggle='modal' data-target='#exampleModalCenter'>Solicitudes</button>";
             }
         ?>
     </div>
@@ -85,10 +85,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
             echo('<label>' . $contenido . '</label>');
         }
-        if ($clase_usuario == Clase_Usuario::JEFE_DDC) {
-            echo "<div id='myModal' class='modal'><div class='modal-content'><div id='espacio_modal'>";
-            echo "</div></div></div>";
-        }
     ?>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Solicitudes de asesoría</h5>
+                </div>
+                <div class="modal-body">
+                    <?php
+                        if (isset($solicitudes)) {
+                            foreach ($solicitudes as $solicitud) {
+                                $usuario = $solicitud->get_usuario();
+                                $tipo = $solicitud->get_tipo() == 0 ? 'Diseño' : 'Actualización';
+                                echo "<div><label>" . $solicitud->get_programa_educativo()->get_nombre() . " - " . $tipo . "</label>";
+                                echo "<label>" . $usuario->get_nombre() . "</label><button type'button'>Puesto</button>";
+                                echo "<label>" . $usuario->get_correo() . "</label>";
+                                echo "<button type='button'>Documento</button><button type='button'>Aprobar</button>";
+                                echo "<button type='button'>Cancelar</button>";
+                            }
+                        }
+                    ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal">Listo</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
