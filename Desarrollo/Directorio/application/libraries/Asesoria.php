@@ -74,4 +74,7 @@ class Asesoria {
     public function obtener_pendientes() {
         return $this->i_asesoria->obtener_solicitudes_pendientes();
     }
+    public function establecer_estado() {
+        return $this->i_asesoria->establecer_estado($this->id, $this->estado);
+    }
 }

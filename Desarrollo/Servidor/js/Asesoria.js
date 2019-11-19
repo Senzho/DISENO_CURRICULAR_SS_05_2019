@@ -18,5 +18,5 @@ $(document).ready(function() {
         var href = $(popup).attr("href");
         $(popup).attr("href", $(this).obtenerHrefOriginal(href) + id);
         $(popup).toggleClass("mostrar");
-	});
+    });
 });

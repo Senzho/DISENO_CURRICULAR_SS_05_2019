@@ -43,4 +43,9 @@ class Modelo_Asesoria extends CI_Model implements I_Asesoria {
         }
         return $solicitudes;
     }
+    public function establecer_estado($id, $estado) {
+        $arreglo = array('asesoria_estado' => $estado);
+        $this->siu_db->where('asesoria_id', $id);
+        return $this->siu_db->update('asesoria', $arreglo);
+    }
 }

@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             echo "<script type='text/javascript' src='" . base_url() . "js/Asesoria.js' ></script>";
         }
         if ($clase_usuario == Clase_Usuario::JEFE_DDC) {
-            echo "<script type='text/javascript' src='" . base_url() . "js/jquery-3.4.1.js' ></script>";
+            
         }
     ?>
 </head>
@@ -63,7 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div>
         <?php
             foreach ($programas_educativos as $programa_educativo) {
-                echo "<div id='" . $programa_educativo->get_id() . "' class='bloque_programa'><label>" . $programa_educativo->get_nombre() . "</label></div>";
+                echo "<a href='" . base_url() . "index.php/Proceso/mapa/" . $programa_educativo->get_id() . "'>" . "<div id='" . $programa_educativo->get_id() . "' class='bloque_programa'><label>" . $programa_educativo->get_nombre() . "</label></div></a>";
             }
         ?>
     </div>
@@ -78,6 +78,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             switch($mensaje) {
                 case 1:
                     $contenido = 'Lo sentimos, el programa educativo tiene un proceso de asesoría activo';
+                break;
+                case 2:
+                    $contenido = 'Ocurrió un error al aprobar la solicitud';
                 break;
                 default:
                     $contenido = 'Ocurrió un error inesperado';
@@ -97,12 +100,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         if (isset($solicitudes)) {
                             foreach ($solicitudes as $solicitud) {
                                 $usuario = $solicitud->get_usuario();
+                                $programa_educativo = $solicitud->get_programa_educativo();
                                 $tipo = $solicitud->get_tipo() == 0 ? 'Diseño' : 'Actualización';
-                                echo "<div><label>" . $solicitud->get_programa_educativo()->get_nombre() . " - " . $tipo . "</label>";
+                                echo "<div id='" . $solicitud->get_id() . "' class='bloque_asesoria'><label>" . $programa_educativo->get_nombre() . " - " . $tipo . "</label>";
                                 echo "<label>" . $usuario->get_nombre() . "</label><button type'button'>Puesto</button>";
                                 echo "<label>" . $usuario->get_correo() . "</label>";
-                                echo "<button type='button'>Documento</button><button type='button'>Aprobar</button>";
-                                echo "<button type='button'>Cancelar</button>";
+                                echo "<button type='button'>Documento</button>";
+                                echo "<a href='" . base_url() . "index.php/Solicitud/aprobar/" . $solicitud->get_id() . "'><button id='boton_aprobar' name='" . $solicitud->get_id() . "' type='button'>Aprobar</button></a>";
+                                echo "<button type='button'>Cancelar</button></div>";
                             }
                         }
                     ?>

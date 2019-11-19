@@ -3,7 +3,6 @@ require_once(APPPATH.'libraries/Estado_Asesoria.php');
 
 class Solicitud extends CI_Controller {
     private function obtener_programa_educativo($id) {
-        $this->load->model('Modelo_Programa_Educativo', 'modelo_programa_educativo');
         $programa_educativo = new Programa_Educativo();
         $programa_educativo->set_id($id);
         $programa_educativo->set_i_programa_educativo(new Modelo_Programa_educativo());
@@ -19,6 +18,8 @@ class Solicitud extends CI_Controller {
         $this->load->library('Programa_Educativo');
         $this->load->library('Asesoria');
         $this->load->library('Usuario');
+        $this->load->model('Modelo_Programa_Educativo', 'modelo_programa_educativo');
+        $this->load->model('Modelo_Asesoria', 'modelo_asesoria');
     }
 
     public function solicitud($programa_educativo_id) {
@@ -47,10 +48,20 @@ class Solicitud extends CI_Controller {
             $asesoria->set_fecha_solicitud(date('Y-m-d'));
             $asesoria->set_usuario($usuario);
             $asesoria->set_programa_educativo($programa_educativo);
-            $this->load->model('Modelo_Asesoria', 'modelo_asesoria');
             $asesoria->set_i_asesoria(new Modelo_Asesoria());
             echo $asesoria->registrar_solicitud() ? 'si' : 'no';
         } else{
+            redirect('Autenticacion/principal', 'location');
+        }
+    }
+    public function aprobar($id_solicitud) {
+        if ($this->session->userdata('usuario')) {
+            $asesoria = new Asesoria();
+            $asesoria->set_id($id_solicitud);
+            $asesoria->set_estado(Estado_Asesoria::APROBADA);
+            $asesoria->set_i_asesoria(new Modelo_Asesoria());
+            redirect('Inicio/principal' . ($asesoria->establecer_estado() ? '' : '/2'));
+        } else {
             redirect('Autenticacion/principal', 'location');
         }
     }
