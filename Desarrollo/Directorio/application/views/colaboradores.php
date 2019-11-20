@@ -11,23 +11,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <button class="" type="submit" id="">Listo</button>
     </nav>
     <div>
-        <h2>Asignación de asesor curricular</h2>
+        <h2>Alta de involucrados</h2>
         <button class="" type="button" id="">Documentos</button>
     </div>
     <div>
-        <h3>Asesor curricular</h3>
+        <h3>Comisión</h3>
         <div>
             <?php
-                if (isset($asesor)) {
-                    $this->load->view('Bloques/asesor', array('asesor' => $asesor));
+                if (isset($colaboradores)) {
+                    foreach ($colaboradores as $colaborador) {
+                        $this->load->view('Bloques/colaborador', array('colaborador' => $colaborador));
+                    }
                 }
             ?>
         </div>
     </div>
     <div>
         <div>
-            <label>Seleccionar</label>
-            <?php echo form_open('Asesor/buscar/', array('id'=>'', 'class'=>''))?>
+            <label>Añadir</label>
+            <?php echo form_open('Colaboradores/buscar/', array('id'=>'', 'class'=>''))?>
                 <?php echo form_hidden('id_programa', $programa_educativo->get_id());?>
                 <input type="text" placeholder="Ingresa palabras clave" name="busqueda" value="<?php echo set_value('busqueda');?>"/>
                 <button type="submit">Buscar</button>
@@ -37,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <?php
                 if (isset($usuarios)) {
                     foreach ($usuarios as $usuario) {
-                        $this->load->view('Bloques/usuario_asesor', array('usuario' => $usuario, 'programa_educativo' => $programa_educativo));
+                        $this->load->view('Bloques/usuario_colaboradores', array('usuario' => $usuario, 'programa_educativo' => $programa_educativo));
                     }
                 }
             ?>

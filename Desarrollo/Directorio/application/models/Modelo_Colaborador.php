@@ -45,7 +45,8 @@ class Modelo_Colaborador extends CI_Model implements I_Colaborador {
         $this->diseño_db->from('usuario, colaborador');
         $this->diseño_db->where('colaborador_programa_id', $id_programa);
         $this->diseño_db->where('usuario_id = colaborador_usuario_id');
-        $consulta = $this->diseño_db->get_where('colaborador', array('colaborador_programa_id' => $id_programa));
+        $this->diseño_db->where('colaborador_programa_id', $id_programa);
+        $consulta = $this->diseño_db->get();
         $colaboradores = array();
         foreach ($consulta->result() as $fila) {
             $consulta_siu = $this->siu_db->get_where('personal', array('numeroPersonal' => $fila->usuario_siu_id));

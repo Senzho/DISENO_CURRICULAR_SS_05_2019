@@ -8,7 +8,8 @@ class Proceso extends CI_Controller {
         $programa_educativo = $programa_educativo->obtener_programa_educativo();
         $programa_educativo->set_i_programa_educativo(new Modelo_Programa_educativo());
         if ($programa_educativo->tiene_asesoria_activa()) {
-            $this->load->view('mapa_proceso', array('programa_educativo' => $programa_educativo));
+            $usuario = unserialize($this->session->userdata('usuario'));
+            $this->load->view('mapa_proceso', array('programa_educativo' => $programa_educativo, 'clase_usuario' => $usuario->get_clase_usuario()));
         } else {
             redirect('Inicio/principal/3');
         }

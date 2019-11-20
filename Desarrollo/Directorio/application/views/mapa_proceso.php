@@ -12,8 +12,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </nav>
     <div>
     <li>
-        <a href="<?php echo base_url() . 'index.php/Asesor/seleccion/' . $programa_educativo->get_id();?>"><ul>Establecer asesor curricular</ul></a>
-        <ul>Establecer colaboradores</ul>
+        <?php
+            if ($clase_usuario == Clase_Usuario::JEFE_DDC) {
+                echo "<a href='" . base_url() . "index.php/Asesor/seleccion/" . $programa_educativo->get_id() . "'>";
+                echo "<ul>Establecer asesor curricular</ul></a>";
+            } else {
+                echo "<ul>Establecer asesor curricular</ul>";
+            }
+            if ($clase_usuario == Clase_Usuario::ASESOR_CURRICULAR) {
+                echo "<ul>Establecer colaboradores</ul>";
+            }
+        ?>
+        <a href="<?php echo base_url() . 'index.php/Colaboradores/seleccion/' . $programa_educativo->get_id();?>"><ul>Establecer colaboradores</ul></a>
     </li>
     </div>
 </body>

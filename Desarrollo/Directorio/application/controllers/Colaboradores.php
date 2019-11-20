@@ -1,16 +1,16 @@
 <?php
 require_once(APPPATH.'libraries/Puesto_Colaborador.php');
 
-class Asesor extends CI_Controller {
+class Colaboradores extends CI_Controller {
     private function cargar_vista($id_programa, $usuarios, $mensaje = NULL) {
         $programa_educativo = new Programa_Educativo();
         $programa_educativo->set_i_programa_educativo(new Modelo_Programa_Educativo());
         $programa_educativo->set_id($id_programa);
         $programa_educativo = $programa_educativo->obtener_programa_educativo();
-        $asesor = new Colaborador();
-        $asesor->set_i_colaborador(new Modelo_Colaborador());
-        $asesor = $asesor->obtener_asesor_programa($id_programa);
-        $this->load->view('asesor_curricular', array('programa_educativo' => $programa_educativo, 'usuarios' => $usuarios, 'asesor' => $asesor, 'mensaje' => $mensaje));
+        $colaborador = new Colaborador();
+        $colaborador->set_i_colaborador(new Modelo_Colaborador());
+        $colaboradores = $colaborador->obtener_por_programa($id_programa);
+        $this->load->view('colaboradores', array('programa_educativo' => $programa_educativo, 'usuarios' => $usuarios, 'colaboradores' => $colaboradores, 'mensaje' => $mensaje));
     }
 
     public function __construct() {
@@ -45,16 +45,16 @@ class Asesor extends CI_Controller {
             redirect('Autenticacion/principal');
         }
     }
-    public function asignar() {
+    public function agregar() {
         if ($this->session->userdata('usuario')) {
             $id_programa = $this->input->post('id_programa');
             $id_usuario = $this->input->post('id_usuario');
             $asesor = new Colaborador();
             $asesor->set_i_colaborador(new Modelo_Colaborador());
             $asesor->set_id($id_usuario);
-            $asesor->set_puesto(Puesto_Colaborador::ASESOR_CURRICULAR);
+            $asesor->set_puesto(Puesto_Colaborador::MIEMBRO_COMISION);
             if ($asesor->registrar($id_programa)) {
-                redirect('Asesor/seleccion/' . $id_programa);
+                redirect('Colaboradores/seleccion/' . $id_programa);
             } else {
                 $this->cargar_vista($id_programa, $usuarios, 'Ocurrió un error al registrar el asesor');
             }
@@ -62,4 +62,5 @@ class Asesor extends CI_Controller {
             redirect('Autenticacion/principal');
         }
     }
+    //Agregar función de eliminar ->
 }
