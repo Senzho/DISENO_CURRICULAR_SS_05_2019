@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </nav>
     <div>
     <li>
-        <ul>Establecer asesor curricular</ul>
+        <a href="<?php echo base_url() . 'index.php/Asesor/seleccion/' . $programa_educativo->get_id();?>"><ul>Establecer asesor curricular</ul></a>
         <ul>Establecer colaboradores</ul>
     </li>
     </div>

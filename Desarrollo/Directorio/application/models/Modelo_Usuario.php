@@ -63,4 +63,28 @@ class Modelo_Usuario extends CI_Model implements I_Usuario {
         $usuario->set_region($consulta_siu->row()->region);
         return $usuario;
     }
+    public function obtener_por_clave($clave) {
+        $this->siu_db->select('*');
+        $this->siu_db->from('personal');
+        $this->siu_db->like('numeroPersonal', $clave);
+        $this->siu_db->or_like('nombre', $clave);
+        $this->siu_db->or_like('correo', $clave);
+        $this->siu_db->or_like('cargo', $clave);
+        $this->siu_db->or_like('region', $clave);
+        $consulta = $this->siu_db->get();
+        $usuarios = array();
+        foreach ($consulta->result() as $fila) {
+            $usuario = new Usuario();
+            $usuario->set_cargo($fila->cargo);
+            $usuario->set_correo($fila->correo);
+            $usuario->set_nombre($fila->nombre);
+            $usuario->set_region($fila->region);
+            $consulta_diseño = $this->diseño_db->get_where('usuario', array('usuario_siu_id' => $fila->numeroPersonal));
+            $usuario->set_id($consulta_diseño->row()->usuario_id);
+            $usuario->set_nombre_usuario($consulta_diseño->row()->usuario_nick);
+            $usuario->set_clase_usuario($this->obtener_clase($consulta_diseño->row()->usuario_clase));
+            array_push($usuarios, $usuario);
+        }
+        return $usuarios;
+    }
 }

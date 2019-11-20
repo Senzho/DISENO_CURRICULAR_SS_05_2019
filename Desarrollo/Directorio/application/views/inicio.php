@@ -62,8 +62,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     <div>
         <?php
+            $modelo_programa = new Modelo_Programa_Educativo();
             foreach ($programas_educativos as $programa_educativo) {
-                echo "<a href='" . base_url() . "index.php/Proceso/mapa/" . $programa_educativo->get_id() . "'>" . "<div id='" . $programa_educativo->get_id() . "' class='bloque_programa'><label>" . $programa_educativo->get_nombre() . "</label></div></a>";
+                $programa_educativo->set_i_programa_educativo($modelo_programa);
+                $asesoria_activa = $programa_educativo->tiene_asesoria_activa();
+                echo $asesoria_activa ? "<a href='" . base_url() . "index.php/Proceso/mapa/" . $programa_educativo->get_id() . "'>" : "";
+                echo "<div id='" . $programa_educativo->get_id() . "' class='bloque_programa'><label>" . $programa_educativo->get_nombre() . "</label></div>";
+                echo $asesoria_activa ? "</a>" : "";
             }
         ?>
     </div>
@@ -81,6 +86,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 break;
                 case 2:
                     $contenido = 'Ocurrió un error al aprobar la solicitud';
+                break;
+                case 3:
+                    $contenido = 'Lo sentimos, el programa educativo no se encuentra en proceso de asesoría';
                 break;
                 default:
                     $contenido = 'Ocurrió un error inesperado';

@@ -74,4 +74,7 @@ class Usuario {
     public function obtener_por_credenciales($nombre_usuario, $contraseña) {
         return $this->i_usuario->obtener_por_credenciales($nombre_usuario, $contraseña);
     }
+    public function obtener_por_clave($clave) {
+        return $this->i_usuario->obtener_por_clave($clave);
+    }
 }
