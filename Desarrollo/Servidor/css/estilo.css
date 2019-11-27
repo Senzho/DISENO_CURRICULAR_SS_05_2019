@@ -1,0 +1,65 @@
+/*General*/
+.cuerpo {
+  background-color: white;
+  margin: 0px, 0px, 0px, 0px;
+}
+/*Controles*/
+.campoTexto {
+  background-color: white;
+  border-color: rgb(166, 166, 166);
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  color: black;
+  padding: 5px;
+}
+.campoTexto:focus {
+  border-color: rgb(0, 112, 192);
+  border-width: 3px;
+}
+.control {
+  height: 15px;
+  width: 250px;
+}
+.block {
+  display: block;
+  margin-bottom: 10px;
+}
+.boton {
+  background-color: rgb(105, 192, 0);
+  border-radius: 10px;
+  border-style: none;
+  color: white;
+  height: 25px;
+  padding: 5px;
+  width: 260px;
+  transition: all 250ms ease;
+}
+.boton:active {
+  background-color: rgb(155, 255, 33);
+}
+.boton:hover {
+  background-color: rgb(124, 226, 0);
+}
+.centradoHorizontal {
+  margin-left: auto;
+  margin-right: auto;
+}
+.centradoVerticalPadre {
+  align-items: center;
+  display: flex;
+}
+.centro {
+  float: none;
+  text-align: center;
+}
+.titulo1 {
+  color: white;
+  font-size: 40px;
+  margin-top: 0px;
+}
+.pagina {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
