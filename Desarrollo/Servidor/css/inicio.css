@@ -1,0 +1,29 @@
+.opciones {
+  position: absolute;
+  width: 100%;
+  top: 60px;
+  padding-left: 20px;
+}
+.filtros {
+  position: absolute;
+  width: 100%;
+  top: 100px;
+  padding-left: 20px;
+}
+.programa {
+  background-color: rgb(231, 230, 230);
+  border-radius: 15px;
+  height: 100px;
+  width: 200px;
+  padding: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.scrollGrid {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 140px;
+  bottom: 10px;
+  overflow-y: scroll;
+}

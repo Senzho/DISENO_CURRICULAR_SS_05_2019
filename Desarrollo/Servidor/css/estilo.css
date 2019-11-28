@@ -1,45 +1,11 @@
 /*General*/
-.cuerpo {
-  background-color: white;
-  margin: 0px, 0px, 0px, 0px;
-}
-/*Controles*/
-.campoTexto {
-  background-color: white;
-  border-color: rgb(166, 166, 166);
-  border-radius: 10px;
-  border-style: solid;
-  border-width: 1px;
-  color: black;
-  padding: 5px;
-}
-.campoTexto:focus {
-  border-color: rgb(0, 112, 192);
-  border-width: 3px;
-}
-.control {
-  height: 15px;
-  width: 250px;
-}
 .block {
   display: block;
   margin-bottom: 10px;
 }
-.boton {
-  background-color: rgb(105, 192, 0);
-  border-radius: 10px;
-  border-style: none;
-  color: white;
-  height: 25px;
-  padding: 5px;
-  width: 260px;
-  transition: all 250ms ease;
-}
-.boton:active {
-  background-color: rgb(155, 255, 33);
-}
-.boton:hover {
-  background-color: rgb(124, 226, 0);
+.cuerpo {
+  background-color: white;
+  margin: 0px, 0px, 0px, 0px;
 }
 .centradoHorizontal {
   margin-left: auto;
@@ -53,11 +19,69 @@
   float: none;
   text-align: center;
 }
-.titulo1 {
+.inline {
+  display: inline-block;
+}
+.nav {
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  padding-left: 20px;
+}
+.textoBlanco {
   color: white;
+}
+.textoNegro {
+  color: black;
+}
+/*Controles*/
+.boton {
+  background-color: rgb(105, 192, 0);
+  border-radius: 10px;
+  border-style: none;
+  color: white;
+  height: 25px;
+  width: 260px;
+  transition: all 250ms ease;
+}
+.boton:active {
+  background-color: rgb(155, 255, 33);
+}
+.boton:hover {
+  background-color: rgb(124, 226, 0);
+}
+.botonImagen {
+  height: 20px;
+  width: 20px;
+}
+.campoTexto {
+  background-color: white;
+  border-color: rgb(166, 166, 166);
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  color: black;
+  height: 15px;
+  padding: 5px;
+  width: 250px;
+}
+.campoTexto:focus {
+  border-color: rgb(0, 112, 192);
+  border-width: 3px;
+}
+.combo {
+  border-style: none;
+}
+.textoBoton {
+  display: inline-block;
+  margin-bottom: 0px;
+  width: 90%;
+}
+.titulo1 {
   font-size: 40px;
   margin-top: 0px;
 }
+/*Extra*/
 .pagina {
   height: 100%;
   position: absolute;

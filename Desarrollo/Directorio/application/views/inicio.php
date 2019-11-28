@@ -5,6 +5,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="es" dir="ltr">
 <head>
     <link href="<?php echo base_url();?>css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url();?>css/estilo.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url();?>css/inicio.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="<?php echo base_url();?>js/jquery-3.4.1.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/bootstrap.min.js"></script>
     <?php
@@ -17,57 +19,62 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
     ?>
 </head>
-<body>
-    <nav>
+<body class="cuerpo">
+    <nav class="nav centradoVerticalPadre">
         <!-- Formulario para poder cerrar sesión con el botón (temporal) -->
         <?php echo form_open('Autenticacion/cerrar_sesion',array('id'=>'', 'class'=>''))?>
             <button class="" type="submit" id="">Menú (cerrar sesión)</button>
         </form>
-        <h1>Proyectos curriculares</h1>
+        <h1 class="titulo1 textoNegro">Proyectos curriculares</h1>
     </nav>
-    <div>
-        <button class="" type="button" id="">Nuevo programa</button>
+    <div class="opciones">
+        <div class="inline" id="contenedorBoton">
+            <div class="boton centradoVerticalPadre">
+                <label class="textoBoton centro">Nuevo programa</label>
+                <img src="<?php echo base_url() . 'iconos/mas.svg';?>" class="botonImagen"></img>
+            </div>
+        </div>
         <?php
             if ($clase_usuario == Clase_Usuario::JEFE_DDC) {
                 echo "<button id='abrir_solicitudes' type='button' data-toggle='modal' data-target='#exampleModalCenter'>Solicitudes</button>";
             }
         ?>
     </div>
-    <div>
+    <div class="filtros">
         <?php echo form_open('Inicio/principal',array('id'=>'', 'class'=>''))?>
-            <select name="areaAcademica">
+            <select name="areaAcademica" class="combo">
                 <option value="Económico - administrativa" <?php echo set_select('areaAcademica', 'Económico - administrativa'); ?>>Económico - administrativa</option>
                 <option value="todo" <?php echo set_select('areaAcademica', 'todo', TRUE); ?>>Todas</option>
             </select>
-            <select name="region">
+            <select name="region" class="combo">
                 <option value="Xalapa" <?php echo set_select('region', 'Xalapa'); ?>>Xalapa</option>
                 <option value="Orizaba" <?php echo set_select('region', 'Orizaba'); ?>>Orizaba</option>
                 <option value="todo" <?php echo set_select('region', 'todo', TRUE); ?>>Todas</option>
             </select>
-            <select name="sede">
+            <select name="sede" class="combo">
                 <option value="Xalapa" <?php echo set_select('sede', 'Xalapa'); ?>>Xalapa</option>
                 <option value="todo" <?php echo set_select('sede', 'todo', TRUE); ?>>Todas</option>
             </select>
-            <select name="sistema">
+            <select name="sistema" class="combo">
                 <option value="Escolarizado" <?php echo set_select('sistema', 'Escolarizado'); ?>>Escolarizado</option>
                 <option value="Abierto" <?php echo set_select('sistema', 'Abierto'); ?>>Abierto</option>
                 <option value="todo" <?php echo set_select('sistema', 'todo', TRUE); ?>>Todos</option>
             </select>
-            <select name="trabajo">
+            <select name="trabajo" class="combo">
                 <option value="Actualización" <?php echo set_select('trabajo', 'Actualización'); ?>>Actualización</option>
                 <option value="todo" <?php echo set_select('trabajo', 'todo', TRUE); ?>>Todos</option>
             </select>
             <button class="" type="submit" id="">Buscar</button>
         </form>
     </div>
-    <div>
+    <div class="scrollGrid">
         <?php
             $modelo_programa = new Modelo_Programa_Educativo();
             foreach ($programas_educativos as $programa_educativo) {
                 $programa_educativo->set_i_programa_educativo($modelo_programa);
                 $asesoria_activa = $programa_educativo->tiene_asesoria_activa();
                 echo $asesoria_activa ? "<a href='" . base_url() . "index.php/Proceso/mapa/" . $programa_educativo->get_id() . "'>" : "";
-                echo "<div id='" . $programa_educativo->get_id() . "' class='bloque_programa'><label>" . $programa_educativo->get_nombre() . "</label></div>";
+                echo "<div class='inline programa' id='" . $programa_educativo->get_id() . "'><label>" . $programa_educativo->get_nombre() . "</label></div>";
                 echo $asesoria_activa ? "</a>" : "";
             }
         ?>
