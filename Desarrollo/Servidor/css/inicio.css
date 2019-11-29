@@ -1,14 +1,38 @@
-.opciones {
-  position: absolute;
+.asesoria {
+  height: 75px;
+  margin-bottom: 10px;
   width: 100%;
-  top: 60px;
-  padding-left: 20px;
+}
+.bordeAsesoria {
+  border-color: greenyellow;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 2px;
+  padding-left: 5px;
+}
+.dato {
+  margin-bottom: 0px;
+}
+.datos {
+  width: 80%;
 }
 .filtros {
   position: absolute;
   width: 100%;
   top: 100px;
   padding-left: 20px;
+}
+.iconoDocumento {
+  height: 60px;
+  widows: 60px;
+}
+.opcionesAsesoria {
+  width: 20%;
+  height: 100%;
+}
+.opcionesHijo {
+  height: 100%;
+  width: 100%;
 }
 .programa {
   background-color: rgb(231, 230, 230);
@@ -18,12 +42,11 @@
   padding: 5px;
   margin-right: 10px;
   margin-bottom: 10px;
+  transition: all 250ms ease;
 }
-.scrollGrid {
-  position: absolute;
-  left: 20px;
-  right: 20px;
-  top: 140px;
-  bottom: 10px;
-  overflow-y: scroll;
+.programa:active {
+  background-color:white;
+}
+.programa:hover {
+  background-color: rgb(245, 245, 245);
 }

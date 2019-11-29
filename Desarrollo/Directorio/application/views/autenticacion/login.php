@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php echo form_open('Autenticacion/iniciar_sesion',array('id'=>'', 'class'=>''))?>
                     <input type="text" id="" class="campoTexto block centradoHorizontal" placeholder="Usuario" required="" autofocus="" name="nick">
                     <input type="password" id="" class="campoTexto block centradoHorizontal" placeholder="Contraseña" required="" name="contraseña">
-                    <button class="boton block centradoHorizontal" type="submit" id="">Ingresar</button>
+                    <button class="boton btnMed block centradoHorizontal" type="submit" id="">Ingresar</button>
                 </form>
                 <a href="" class="block centro">¿Olvidaste tu contraseña?</a>
             </div>

@@ -28,20 +28,45 @@
   height: 60px;
   padding-left: 20px;
 }
+.tab {
+  margin-left: 10px;
+}
 .textoBlanco {
   color: white;
 }
 .textoNegro {
   color: black;
 }
+.opciones {
+  position: absolute;
+  width: 100%;
+  top: 60px;
+  padding-left: 20px;
+}
+.panelGrande {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 100px;
+  bottom: 10px;
+}
+.panelMediano {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 140px;
+  bottom: 10px;
+}
+.scrollY {
+  overflow-y: scroll;
+}
 /*Controles*/
 .boton {
   background-color: rgb(105, 192, 0);
-  border-radius: 10px;
+  border-radius: 5px;
   border-style: none;
   color: white;
   height: 25px;
-  width: 260px;
   transition: all 250ms ease;
 }
 .boton:active {
@@ -51,13 +76,20 @@
   background-color: rgb(124, 226, 0);
 }
 .botonImagen {
+  cursor: pointer;
   height: 20px;
   width: 20px;
+}
+.btnMed {
+  width: 260px;
+}
+.btnPeq {
+  width: 130px;
 }
 .campoTexto {
   background-color: white;
   border-color: rgb(166, 166, 166);
-  border-radius: 10px;
+  border-radius: 5px;
   border-style: solid;
   border-width: 1px;
   color: black;
@@ -79,6 +111,14 @@
 }
 .titulo1 {
   font-size: 40px;
+  margin-top: 0px;
+}
+.titulo2 {
+  font-size: 30px;
+  margin-top: 0px;
+}
+.titulo3 {
+  font-size: 20px;
   margin-top: 0px;
 }
 /*Extra*/

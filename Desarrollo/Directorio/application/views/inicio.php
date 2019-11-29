@@ -14,29 +14,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             echo "<link href='" . base_url() . "css/popup.css' rel='stylesheet' type='text/css'>";
             echo "<script type='text/javascript' src='" . base_url() . "js/Asesoria.js' ></script>";
         }
-        if ($clase_usuario == Clase_Usuario::JEFE_DDC) {
-            
-        }
     ?>
 </head>
 <body class="cuerpo">
+    <?php
+        //$this->load->view('Bloques/titulo', array('titulo' => 'Proyectos curriculares'));
+    ?>
     <nav class="nav centradoVerticalPadre">
-        <!-- Formulario para poder cerrar sesión con el botón (temporal) -->
-        <?php echo form_open('Autenticacion/cerrar_sesion',array('id'=>'', 'class'=>''))?>
-            <button class="" type="submit" id="">Menú (cerrar sesión)</button>
-        </form>
-        <h1 class="titulo1 textoNegro">Proyectos curriculares</h1>
+        <!-- Link para poder cerrar sesión con el botón (temporal) -->
+        <a href="<?php echo base_url() . 'index.php/Autenticacion/cerrar_sesion';?>" class="centradoVerticalPadre">
+            <img src="<?php echo base_url() . 'iconos/menu.svg';?>" class="botonImagen"></img>
+        </a>
+        <h1 class="titulo1 textoNegro tab">Proyectos curriculares</h1>
     </nav>
-    <div class="opciones">
+    <div class="opciones centradoVerticalPadre">
         <div class="inline" id="contenedorBoton">
-            <div class="boton centradoVerticalPadre">
+            <div class="boton btnMed centradoVerticalPadre">
                 <label class="textoBoton centro">Nuevo programa</label>
                 <img src="<?php echo base_url() . 'iconos/mas.svg';?>" class="botonImagen"></img>
             </div>
         </div>
         <?php
             if ($clase_usuario == Clase_Usuario::JEFE_DDC) {
-                echo "<button id='abrir_solicitudes' type='button' data-toggle='modal' data-target='#exampleModalCenter'>Solicitudes</button>";
+                echo "<img src='" . base_url() . "iconos/carta.svg' class='botonImagen tab' data-toggle='modal' data-target='#exampleModalCenter'></img>";
             }
         ?>
     </div>
@@ -67,14 +67,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <button class="" type="submit" id="">Buscar</button>
         </form>
     </div>
-    <div class="scrollGrid">
+    <div class="panelMediano scrollY">
         <?php
             $modelo_programa = new Modelo_Programa_Educativo();
             foreach ($programas_educativos as $programa_educativo) {
                 $programa_educativo->set_i_programa_educativo($modelo_programa);
                 $asesoria_activa = $programa_educativo->tiene_asesoria_activa();
                 echo $asesoria_activa ? "<a href='" . base_url() . "index.php/Proceso/mapa/" . $programa_educativo->get_id() . "'>" : "";
-                echo "<div class='inline programa' id='" . $programa_educativo->get_id() . "'><label>" . $programa_educativo->get_nombre() . "</label></div>";
+                echo "<div class='inline programa bloque_programa' id='" . $programa_educativo->get_id() . "'><label>" . $programa_educativo->get_nombre() . "</label></div>";
                 echo $asesoria_activa ? "</a>" : "";
             }
         ?>
@@ -117,18 +117,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 $usuario = $solicitud->get_usuario();
                                 $programa_educativo = $solicitud->get_programa_educativo();
                                 $tipo = $solicitud->get_tipo() == 0 ? 'Diseño' : 'Actualización';
-                                echo "<div id='" . $solicitud->get_id() . "' class='bloque_asesoria'><label>" . $programa_educativo->get_nombre() . " - " . $tipo . "</label>";
-                                echo "<label>" . $usuario->get_nombre() . "</label><button type'button'>Puesto</button>";
-                                echo "<label>" . $usuario->get_correo() . "</label>";
-                                echo "<button type='button'>Documento</button>";
-                                echo "<a href='" . base_url() . "index.php/Solicitud/aprobar/" . $solicitud->get_id() . "'><button id='boton_aprobar' name='" . $solicitud->get_id() . "' type='button'>Aprobar</button></a>";
-                                echo "<button type='button'>Cancelar</button></div>";
+                                $this->load->view('Bloques/solicitud', array('solicitud' => $solicitud, 'usuario' => $usuario, 'programa_educativo' => $programa_educativo, 'tipo' => $tipo));
                             }
                         }
                     ?>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" data-dismiss="modal">Listo</button>
+                    <button type="button" data-dismiss="modal" class="boton btnPeq">Listo</button>
                 </div>
             </div>
         </div>
