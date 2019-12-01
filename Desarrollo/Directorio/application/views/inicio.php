@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body class="cuerpo">
     <?php
-        //$this->load->view('Bloques/titulo', array('titulo' => 'Proyectos curriculares'));
+        //$this->load->view('Bloques/titulo', array('titulo' => 'Proyectos curriculares', 'boton_listo' => FALSE));
     ?>
     <nav class="nav centradoVerticalPadre">
         <!-- Link para poder cerrar sesión con el botón (temporal) -->

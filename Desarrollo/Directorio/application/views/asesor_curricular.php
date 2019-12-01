@@ -10,9 +10,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body class="cuerpo">
     <?php
-        $this->load->view('Bloques/titulo', array('titulo' => $programa_educativo->get_nombre()));
+        $this->load->view('Bloques/titulo', array('titulo' => $programa_educativo->get_nombre(), 'boton_listo' => TRUE));
     ?>
-    <!--boton-->
     <div class="opciones centradoVerticalPadre">
         <h2 class="titulo2 inline">Asignación de asesor curricular</h2>
         <img src="<?php echo base_url() . 'iconos/archivero.svg';?>" class="botonImagen tab"></img>
@@ -20,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="panelGrande">
         <div class="izquierdo">
             <h3 class="titulo3">Asesor curricular</h3>
-            <div>
+            <div class="lista scrollY">
                 <?php
                     if (isset($asesor)) {
                         $this->load->view('Bloques/asesor', array('asesor' => $asesor));
@@ -33,11 +32,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <label class="titulo3">Seleccionar</label>
                 <?php echo form_open('Asesor/buscar/', array('id'=>'', 'class'=>'inline'))?>
                     <?php echo form_hidden('id_programa', $programa_educativo->get_id());?>
-                    <input type="text" placeholder="Ingresa palabras clave" name="busqueda" value="<?php echo set_value('busqueda');?>"/>
-                    <button type="submit">Buscar</button>
+                    <div id="cuadroBusqueda" class="campoBusqueda centradoVerticalPadre">
+                        <input type="text" placeholder="Ingresa palabras clave" name="busqueda" value="<?php echo set_value('busqueda');?>" class="campoLimpio"/>
+                        <input type="image" alt="submit" value="Buscar" src="<?php echo base_url() . 'iconos/lupa.svg';?>" class="botonImagen"/>
+                    </div>
                 </form>
             </div>
-            <div>
+            <div class="lista scrollY">
                 <?php
                     if (isset($usuarios)) {
                         foreach ($usuarios as $usuario) {

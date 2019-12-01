@@ -1,19 +1,15 @@
 .derecho {
   position: absolute;
-  width: 48%;
   height: 100%;
-  left: 52%;
+  left: 200px;
+  right: 0px;
+  background-color: red;
 }
 .izquierdo {
   position: absolute;
-  width: 48%;
+  width: 200px;
   height: 100%;
-}
-.lista {
-  position: absolute;
-  top: 40px;
-  bottom: 0px;
-  width: 100%;
+  background-color: orange;
 }
 .usuario {
   background-color: rgb(231, 230, 230);

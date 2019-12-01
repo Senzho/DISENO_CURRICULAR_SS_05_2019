@@ -3,46 +3,53 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
-<head></head>
-<body>
-    <nav>
-        <button class="" type="button" id="">Menú</button>
-        <h1><?php echo $programa_educativo->get_nombre();?></h1>
-        <button class="" type="submit" id="">Listo</button>
-    </nav>
-    <div>
-        <h2>Alta de involucrados</h2>
-        <button class="" type="button" id="">Documentos</button>
+<head>
+    <link href="<?php echo base_url();?>css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url();?>css/estilo.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url();?>css/asesor.css" rel="stylesheet" type="text/css">
+</head>
+<body class="cuerpo">
+    <?php
+        $this->load->view('Bloques/titulo', array('titulo' => $programa_educativo->get_nombre(), 'boton_listo' => TRUE));
+    ?>
+    <!--boton-->
+    <div class="opciones centradoVerticalPadre">
+        <h2 class="titulo2 inline">Alta de involucrados</h2>
+        <img src="<?php echo base_url() . 'iconos/archivero.svg';?>" class="botonImagen tab"></img>
     </div>
-    <div>
-        <h3>Comisión</h3>
-        <div>
-            <?php
-                if (isset($colaboradores)) {
-                    foreach ($colaboradores as $colaborador) {
-                        $this->load->view('Bloques/colaborador', array('colaborador' => $colaborador));
+    <div class="panelGrande">
+        <div class="izquierdo">
+            <h3 class="titulo3">Comisión</h3>
+            <div class="lista scrollY">
+                <?php
+                    if (isset($colaboradores)) {
+                        foreach ($colaboradores as $colaborador) {
+                            $this->load->view('Bloques/colaborador', array('colaborador' => $colaborador));
+                        }
                     }
-                }
-            ?>
+                ?>
+            </div>
         </div>
-    </div>
-    <div>
-        <div>
-            <label>Añadir</label>
-            <?php echo form_open('Colaboradores/buscar/', array('id'=>'', 'class'=>''))?>
-                <?php echo form_hidden('id_programa', $programa_educativo->get_id());?>
-                <input type="text" placeholder="Ingresa palabras clave" name="busqueda" value="<?php echo set_value('busqueda');?>"/>
-                <button type="submit">Buscar</button>
-            </form>
-        </div>
-        <div>
-            <?php
-                if (isset($usuarios)) {
-                    foreach ($usuarios as $usuario) {
-                        $this->load->view('Bloques/usuario_colaboradores', array('usuario' => $usuario, 'programa_educativo' => $programa_educativo));
+        <div class="derecho">
+            <div>
+                <label class="titulo3">Añadir</label>
+                <?php echo form_open('Colaboradores/buscar/', array('id'=>'', 'class'=>'inline'))?>
+                    <?php echo form_hidden('id_programa', $programa_educativo->get_id());?>
+                    <div id="cuadroBusqueda" class="campoBusqueda centradoVerticalPadre">
+                        <input type="text" placeholder="Ingresa palabras clave" name="busqueda" value="<?php echo set_value('busqueda');?>" class="campoLimpio"/>
+                        <input type="image" alt="submit" value="Buscar" src="<?php echo base_url() . 'iconos/lupa.svg';?>" class="botonImagen"/>
+                    </div>
+                </form>
+            </div>
+            <div class="lista scrollY">
+                <?php
+                    if (isset($usuarios)) {
+                        foreach ($usuarios as $usuario) {
+                            $this->load->view('Bloques/usuario_colaboradores', array('usuario' => $usuario, 'programa_educativo' => $programa_educativo));
+                        }
                     }
-                }
-            ?>
+                ?>
+            </div>
         </div>
     </div>
     <label><?php echo $mensaje;?></label>

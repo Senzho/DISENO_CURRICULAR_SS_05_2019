@@ -10,9 +10,6 @@
   border-width: 2px;
   padding-left: 5px;
 }
-.dato {
-  margin-bottom: 0px;
-}
 .datos {
   width: 80%;
 }
@@ -29,10 +26,6 @@
 .opcionesAsesoria {
   width: 20%;
   height: 100%;
-}
-.opcionesHijo {
-  height: 100%;
-  width: 100%;
 }
 .programa {
   background-color: rgb(231, 230, 230);
