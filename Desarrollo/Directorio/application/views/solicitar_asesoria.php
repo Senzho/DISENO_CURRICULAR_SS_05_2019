@@ -24,16 +24,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     <div class="panelGrande">
         <div class="izquierdo">
-            <div class="tipo" name="diseño">
-                <label>Diseño</label>
+            <div class="tipo centradoVerticalPadre" name="diseño">
+                <img src="<?php echo base_url() . 'iconos/diseño.svg';?>" class="icono tab"></img>
+                <label class="dato tab">Diseño</label>
             </div>
-            <div class="tipo" name="actualizacion">
-                <label>Actualización</label>
+            <div class="tipo centradoVerticalPadre" name="actualizacion">
+                <img src="<?php echo base_url() . 'iconos/actualizar.svg';?>" class="icono tab"></img>
+                <label class="dato tab">Actualización</label>
             </div>
         </div>
         <div class="derecho">
-            <p id="pDiseño">El diseño de un plan de estudios significa...</p>
-            <p id="pActualizacion">La actualización de un plan de estudios significa...</p>
+            <p id="pDiseño" class="tab">El diseño de un plan de estudios significa...</p>
+            <p id="pActualizacion" class ="tab">La actualización de un plan de estudios significa...</p>
         </div>
     </div>
 </body>
