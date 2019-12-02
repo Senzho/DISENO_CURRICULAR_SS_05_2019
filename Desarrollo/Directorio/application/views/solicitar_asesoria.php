@@ -9,6 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link href="<?php echo base_url();?>css/solicitud.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-3.4.1.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>js/Solicitud.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>js/menu.js"></script>
 </head>
 <body class="cuerpo">
     <?php echo form_open('Solicitud/registrar',array('id'=>'', 'class'=>''))?>
@@ -38,5 +39,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <p id="pActualizacion" class ="tab">La actualización de un plan de estudios significa...</p>
         </div>
     </div>
+    <?php
+        $this->load->view('Bloques/menu_principal');
+    ?>
 </body>
 </html>

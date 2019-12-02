@@ -9,7 +9,7 @@ $.fn.obtenerHrefOriginal = function(href) {
     return hrefOriginal;
 }
 
-$(document).ready(function() {
+$(document).ready(function(event) {
     var bloquePrograma = $(".bloque_programa");
 	$(bloquePrograma).contextmenu(function(event) {
         event.preventDefault();
@@ -17,6 +17,7 @@ $(document).ready(function() {
         var popup = $("#myPopup");
         var href = $(popup).attr("href");
         $(popup).attr("href", $(this).obtenerHrefOriginal(href) + id);
+        $(popup).css({"left": event.pageX, "top": event.pageY});
         $(popup).toggleClass("mostrar");
     });
 });

@@ -1,7 +1,7 @@
 <nav class="nav centradoVerticalPadre">
-    <a href="" class="centradoVerticalPadre">
-        <img src="<?php echo base_url() . 'iconos/menu.svg';?>" class="botonImagen"></img>
-    </a>
+    <!-- <a href="" class="centradoVerticalPadre"> -->
+        <img id="menu" src="<?php echo base_url() . 'iconos/menu.svg';?>" class="botonImagen"></img>
+    <!-- </a> -->
     <h1 class="titulo1 textoNegro tab"><?php echo $titulo;?></h1>
     <?php
         if ($boton_listo) {

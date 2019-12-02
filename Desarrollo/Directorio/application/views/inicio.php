@@ -9,6 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link href="<?php echo base_url();?>css/inicio.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="<?php echo base_url();?>js/jquery-3.4.1.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>js/menu.js"></script>
     <?php
         if ($clase_usuario == Clase_Usuario::SOLICITANTE) {
             echo "<link href='" . base_url() . "css/popup.css' rel='stylesheet' type='text/css'>";
@@ -18,15 +19,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body class="cuerpo">
     <?php
-        //$this->load->view('Bloques/titulo', array('titulo' => 'Proyectos curriculares', 'boton_listo' => FALSE));
+        $this->load->view('Bloques/titulo', array('titulo' => 'Proyectos curriculares', 'boton_listo' => FALSE));
     ?>
-    <nav class="nav centradoVerticalPadre">
-        <!-- Link para poder cerrar sesión con el botón (temporal) -->
-        <a href="<?php echo base_url() . 'index.php/Autenticacion/cerrar_sesion';?>" class="centradoVerticalPadre">
-            <img src="<?php echo base_url() . 'iconos/menu.svg';?>" class="botonImagen"></img>
-        </a>
-        <h1 class="titulo1 textoNegro tab">Proyectos curriculares</h1>
-    </nav>
     <div class="opciones centradoVerticalPadre">
         <div class="inline" id="contenedorBoton">
             <div class="boton btnMed centradoVerticalPadre">
@@ -74,16 +68,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $programa_educativo->set_i_programa_educativo($modelo_programa);
                 $asesoria_activa = $programa_educativo->tiene_asesoria_activa();
                 echo $asesoria_activa ? "<a href='" . base_url() . "index.php/Proceso/mapa/" . $programa_educativo->get_id() . "'>" : "";
-                echo "<div class='inline programa bloque_programa' id='" . $programa_educativo->get_id() . "'><label>" . $programa_educativo->get_nombre() . "</label></div>";
+                $this->load->view("Bloques/programa_educativo", array('programa_educativo' => $programa_educativo));
                 echo $asesoria_activa ? "</a>" : "";
             }
         ?>
     </div>
     <?php
         if ($clase_usuario == Clase_Usuario::SOLICITANTE) {
-            echo "<div id='menuProgramaEducativo' class='popup'>";
-            echo "<a href='" . base_url() . "index.php/Solicitud/solicitud/' class='popuptext' id='myPopup'>Solicitar asesoría</a>";
-            echo "</div>";
+            $this->load->view('Bloques/menu_solicitante');
         }
         if ($mensaje > 0) {
             $contenido;
@@ -128,5 +120,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
     </div>
+    <?php
+        $this->load->view('Bloques/menu_principal');
+    ?>
 </body>
 </html>

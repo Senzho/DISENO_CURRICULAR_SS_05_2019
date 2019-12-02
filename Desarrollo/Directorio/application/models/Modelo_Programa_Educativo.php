@@ -31,7 +31,16 @@ class Modelo_Programa_Educativo extends CI_Model implements I_Programa_Educativo
     }
     
     public function obtener_de_colaborador($id_usuario, $filtros) {
-
+        $programas_educativos = array();
+        $consulta = $this->siu_db->get_where('programaEducativo', $this->obtener_where_desde_filtros($filtros));
+        foreach ($consulta->result() as $fila) {
+            $programa_educativo = $this->obtener_objeto($fila);
+            $consulta_diseño = $this->diseño_db->get_where('colaborador', array('colaborador_usuario_id' => $id_usuario, 'colaborador_programa_id' => $programa_educativo->get_id()));
+            if ($consulta_diseño->num_rows() == 1) {
+                array_push($programas_educativos, $programa_educativo);
+            }
+        }
+        return $programas_educativos;
     }
     public function obtener_todos($filtros) {
         $programas_educativos = array();

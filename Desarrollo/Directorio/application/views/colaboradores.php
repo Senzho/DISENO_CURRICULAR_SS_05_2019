@@ -7,12 +7,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link href="<?php echo base_url();?>css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>css/estilo.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>css/asesor.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="<?php echo base_url();?>js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>js/menu.js"></script>
 </head>
 <body class="cuerpo">
     <?php
         $this->load->view('Bloques/titulo', array('titulo' => $programa_educativo->get_nombre(), 'boton_listo' => TRUE));
     ?>
-    <!--boton-->
     <div class="opciones centradoVerticalPadre">
         <h2 class="titulo2 inline">Alta de involucrados</h2>
         <img src="<?php echo base_url() . 'iconos/archivero.svg';?>" class="botonImagen tab"></img>
@@ -52,6 +53,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
     </div>
+    <?php
+        $this->load->view('Bloques/menu_principal');
+    ?>
     <label><?php echo $mensaje;?></label>
 </body>
 </html>

@@ -13,9 +13,6 @@
   width: 200px;
   height: 100%;
 }
-.invisible {
-  display: none;
-}
 .tipo {
   background-color: rgb(231, 230, 230);
   border-radius: 15px;
