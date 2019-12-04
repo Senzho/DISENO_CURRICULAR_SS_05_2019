@@ -116,7 +116,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'jumaloga@uv.mx','123456',5,'zS15011641'),(2,'damedu@uv.mx','123456',6,'zS27388293'),(3,'mizamu@uv.mx','123456',4,'zS19473827'),(4,'dicari@uv.mx','123456',3,'zS1782736');
+INSERT INTO `usuario` VALUES (1,'jumaloga@uv.mx','123456',5,'zS15011641'),(2,'damedu@uv.mx','123456',6,'zS27388293'),(3,'mizamu@uv.mx','123456',4,'zS19473827'),(4,'dicari@uv.mx','123456',1,'zS1782736');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
