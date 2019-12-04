@@ -19,13 +19,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="panelGrande">
         <li>
             <?php
+                $clase_usuario = $usuario->get_clase_usuario();
                 if ($clase_usuario == Clase_Usuario::JEFE_DDC) {
                     echo "<a href='" . base_url() . "index.php/Asesor/seleccion/" . $programa_educativo->get_id() . "'>";
                     echo "<ul>Establecer asesor curricular</ul></a>";
                 } else {
                     echo "<ul>Establecer asesor curricular</ul>";
                 }
-                if ($clase_usuario == Clase_Usuario::ASESOR_CURRICULAR) {
+                $asesor = new Colaborador();
+                $asesor->set_i_colaborador(new Modelo_Colaborador());
+                $asesor = $asesor->obtener_asesor_programa($programa_educativo->get_id());
+                if ($clase_usuario == Clase_Usuario::COLABORADOR && isset($asesor)) {
                     echo "<a href='" . base_url() . "index.php/Colaboradores/seleccion/" . $programa_educativo->get_id() . "'>";
                     echo "<ul>Establecer colaboradores</ul></a>";
                 } else {

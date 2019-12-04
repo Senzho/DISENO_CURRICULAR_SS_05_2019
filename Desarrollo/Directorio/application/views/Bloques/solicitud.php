@@ -2,12 +2,12 @@
     <div id="panel" class="datos inline bordeAsesoria">
         <div id="contenedorPanel" class="hijo centradoVerticalPadre">
             <div id="datos" class="datos inline">
-                <label class="dato"><?php echo $programa_educativo->get_nombre() . " - " . $tipo;?></label>
+                <label class="dato textoBlanco"><?php echo $programa_educativo->get_nombre() . " - " . $tipo;?></label>
                 <div class="centradoVerticalPadre">
-                    <label class="dato"><?php echo $usuario->get_nombre();?></label>
+                    <label class="dato textoBlanco""><?php echo $usuario->get_nombre();?></label>
                     <a href="#" class="popover-test" title="<?php echo $usuario->get_cargo() . ' - ' . $usuario->get_region();?>"><img src="<?php echo base_url() . 'iconos/silla.svg';?>" class="botonImagen tab"></img></a>
                 </div>
-                <label class="dato"><?php echo $usuario->get_correo();?></label>
+                <label class="dato textoBlanco""><?php echo $usuario->get_correo();?></label>
             </div>
             <div id="documento" class="opcionesAsesoria inline">
                 <div id="opcionesHijo" class="hijo centradoVerticalPadre">

@@ -17,6 +17,27 @@ class Colaborador extends Usuario {
         return $this->puesto;
     }
 
+    public function get_nombre_puesto() {
+        $nombre;
+        switch ($this->puesto) {
+            case 2:
+                $nombre = 'Coordinador de la comisión';
+            break;
+            case 3:
+                $nombre = 'Asesor curricular';
+            break;
+            case 4:
+                $nombre = 'Coordinador estatal';
+            break;
+            case 5:
+                $nombre = 'Coordinador regional';
+            break;
+            default:
+                $nombre = 'Miembro de la comisión';
+            break;
+        }
+        return $nombre;
+    }
     public function set_i_colaborador($i_colaborador) {
         $this->i_colaborador = $i_colaborador;
     }

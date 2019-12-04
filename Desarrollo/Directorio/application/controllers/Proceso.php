@@ -9,7 +9,7 @@ class Proceso extends CI_Controller {
         $programa_educativo->set_i_programa_educativo(new Modelo_Programa_educativo());
         if ($programa_educativo->tiene_asesoria_activa()) {
             $usuario = unserialize($this->session->userdata('usuario'));
-            $this->load->view('mapa_proceso', array('programa_educativo' => $programa_educativo, 'clase_usuario' => $usuario->get_clase_usuario()));
+            $this->load->view('mapa_proceso', array('programa_educativo' => $programa_educativo, 'usuario' => $usuario));
         } else {
             redirect('Inicio/principal/3');
         }
@@ -21,8 +21,10 @@ class Proceso extends CI_Controller {
         $this->load->helper('url');
         $this->load->library('session');
         $this->load->library('Usuario');
+        $this->load->library('Colaborador');
         $this->load->library('Programa_Educativo');
         $this->load->model('Modelo_Programa_Educativo', 'modelo_programa');
+        $this->load->model('Modelo_Colaborador', 'modelo_colaborador');
     }
 
     public function mapa($id_programa) {

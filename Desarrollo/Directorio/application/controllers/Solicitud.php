@@ -9,6 +9,9 @@ class Solicitud extends CI_Controller {
         $programa_educativo = $programa_educativo->obtener_programa_educativo();
         return $programa_educativo;
     }
+    private function mostrar_vista_principal($programa_educativo, $mensaje) {
+        $this->load->view('solicitar_asesoria', array('programa_educativo' => $programa_educativo, 'mensaje' => $mensaje));
+    }
 
     public function __construct() {
         parent::__construct();
@@ -27,7 +30,7 @@ class Solicitud extends CI_Controller {
             $programa_educativo = $this->obtener_programa_educativo($programa_educativo_id);
             $programa_educativo->set_i_programa_educativo(new Modelo_Programa_educativo());
             if (!$programa_educativo->tiene_asesoria_activa()) {
-                $this->load->view('solicitar_asesoria', array('programa_educativo' => $programa_educativo));
+                $this->mostrar_vista_principal($programa_educativo, NULL);
             } else {
                 redirect('Inicio/principal/1');
             }
@@ -49,7 +52,11 @@ class Solicitud extends CI_Controller {
             $asesoria->set_usuario($usuario);
             $asesoria->set_programa_educativo($programa_educativo);
             $asesoria->set_i_asesoria(new Modelo_Asesoria());
-            echo $asesoria->registrar_solicitud() ? 'si' : 'no';
+            if ($asesoria->registrar_solicitud()) {
+                redirect('Inicio/principal', 'location');
+            } else {
+                $this->mostrar_vista_principal($programa_educativo, 'Lo sentimos, ocurrió un error al registrar la solicitud');
+            }
         } else{
             redirect('Autenticacion/principal', 'location');
         }

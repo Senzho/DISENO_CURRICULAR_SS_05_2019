@@ -72,7 +72,7 @@ class Modelo_Programa_Educativo extends CI_Model implements I_Programa_Educativo
         return $programa_educativo;
     }
     public function tiene_asesoria_activa($id_programa) {
-        $consulta = $this->diseño_db->get_where('asesoria', array('asesoria_programa_id' => $id_programa, 'asesoria_estado !=' => '2', 'asesoria_estado !=' => '5'));
+        $consulta = $this->diseño_db->get_where('asesoria', array('asesoria_programa_id' => $id_programa, 'asesoria_estado' => '4'));
         return $consulta->num_rows() > 0;
     }
 }

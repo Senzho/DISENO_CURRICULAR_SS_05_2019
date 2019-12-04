@@ -98,9 +98,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     ?>
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style="background-color: #212121;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Solicitudes de asesoría</h5>
+                    <h5 class="modal-title textoBlanco" id="exampleModalLongTitle">Solicitudes de asesoría</h5>
                 </div>
                 <div class="modal-body">
                     <?php
