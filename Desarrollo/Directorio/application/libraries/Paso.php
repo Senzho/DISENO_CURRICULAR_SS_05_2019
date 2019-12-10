@@ -47,4 +47,7 @@ class Paso {
     public function obtener_paso($id_paso) {
         return $this->i_paso->obtener_paso($id_paso);
     }
+    public function obtener_pasos() {
+        return $this->i_paso->obtener_pasos();
+    }
 }
