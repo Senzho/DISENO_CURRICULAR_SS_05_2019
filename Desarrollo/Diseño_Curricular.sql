@@ -32,7 +32,7 @@ CREATE TABLE `asesoria` (
   `asesoria_programa_id` int(11) DEFAULT NULL,
   `asesoria_tipo` int(11) DEFAULT NULL,
   PRIMARY KEY (`asesoria_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -57,7 +57,7 @@ CREATE TABLE `colaborador` (
   `colaborador_programa_id` int(11) DEFAULT NULL,
   `colaborador_usuario_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`colaborador_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,6 +91,133 @@ CREATE TABLE `colaborador_region` (
 LOCK TABLES `colaborador_region` WRITE;
 /*!40000 ALTER TABLE `colaborador_region` DISABLE KEYS */;
 /*!40000 ALTER TABLE `colaborador_region` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `columna`
+--
+
+DROP TABLE IF EXISTS `columna`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `columna` (
+  `columna_id` int(11) NOT NULL AUTO_INCREMENT,
+  `columna_nombre` varchar(30) DEFAULT NULL,
+  `columna_elemento` int(11) DEFAULT NULL,
+  PRIMARY KEY (`columna_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `columna`
+--
+
+LOCK TABLES `columna` WRITE;
+/*!40000 ALTER TABLE `columna` DISABLE KEYS */;
+INSERT INTO `columna` VALUES (1,'Nombre del valor',1),(2,'Definición',1);
+/*!40000 ALTER TABLE `columna` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cuadrotexto`
+--
+
+DROP TABLE IF EXISTS `cuadrotexto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cuadrotexto` (
+  `cuadro_id` int(11) NOT NULL AUTO_INCREMENT,
+  `cuadro_instruccion` varchar(500) DEFAULT NULL,
+  `cuadro_elemento` int(11) DEFAULT NULL,
+  PRIMARY KEY (`cuadro_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cuadrotexto`
+--
+
+LOCK TABLES `cuadrotexto` WRITE;
+/*!40000 ALTER TABLE `cuadrotexto` DISABLE KEYS */;
+INSERT INTO `cuadrotexto` VALUES (1,'Escribe aquí la síntesis de valores...',2);
+/*!40000 ALTER TABLE `cuadrotexto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `elemento`
+--
+
+DROP TABLE IF EXISTS `elemento`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `elemento` (
+  `elemento_id` int(11) NOT NULL AUTO_INCREMENT,
+  `elemento_nombre` varchar(100) DEFAULT NULL,
+  `elemento_fecha_registro` date DEFAULT NULL,
+  `elemento_tipo` int(11) DEFAULT NULL,
+  `elemento_paso` int(11) DEFAULT NULL,
+  PRIMARY KEY (`elemento_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `elemento`
+--
+
+LOCK TABLES `elemento` WRITE;
+/*!40000 ALTER TABLE `elemento` DISABLE KEYS */;
+INSERT INTO `elemento` VALUES (1,'Tabla de valores','2019-12-10',2,3),(2,'Cuadro de síntesis','2019-12-10',1,3);
+/*!40000 ALTER TABLE `elemento` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `guia`
+--
+
+DROP TABLE IF EXISTS `guia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `guia` (
+  `guia_id` int(11) NOT NULL AUTO_INCREMENT,
+  `guia_contenido` varchar(100) DEFAULT NULL,
+  `guia_elemento` int(11) DEFAULT NULL,
+  PRIMARY KEY (`guia_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `guia`
+--
+
+LOCK TABLES `guia` WRITE;
+/*!40000 ALTER TABLE `guia` DISABLE KEYS */;
+INSERT INTO `guia` VALUES (1,'¿Es válido?',1),(2,'¿Existe un anáisis previo?',2),(3,'¿Cuál es la lista de valores necesarios?',2);
+/*!40000 ALTER TABLE `guia` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `paso`
+--
+
+DROP TABLE IF EXISTS `paso`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `paso` (
+  `paso_id` int(11) NOT NULL AUTO_INCREMENT,
+  `paso_nombre` varchar(100) DEFAULT NULL,
+  `paso_fecha_registro` date DEFAULT NULL,
+  PRIMARY KEY (`paso_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `paso`
+--
+
+LOCK TABLES `paso` WRITE;
+/*!40000 ALTER TABLE `paso` DISABLE KEYS */;
+INSERT INTO `paso` VALUES (1,'Establecer asesor curricular','2019-12-10'),(2,'Establecer colaboradores','2019-12-10'),(3,'Ideario','2019-12-10');
+/*!40000 ALTER TABLE `paso` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -129,4 +256,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-02 15:35:40
+-- Dump completed on 2019-12-11 17:03:09
