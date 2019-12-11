@@ -21,7 +21,7 @@ class Modelo_Paso extends CI_Model implements I_Paso {
         }
         $elemento->set_id($fila->elemento_id);
         $elemento->set_nombre($fila->elemento_nombre);
-        $elemento->set_fecha_registro($fila->fecha_registro);
+        $elemento->set_fecha_registro($fila->elemento_fecha_registro);
         $elemento->set_tipo($fila->elemento_tipo);
         return $elemento;
     }
@@ -57,7 +57,7 @@ class Modelo_Paso extends CI_Model implements I_Paso {
         $elementos = array();
         $consulta = $this->diseño_db->get_where('elemento', array('elemento_paso' => $id_paso));
         foreach ($consulta->result() as $fila) {
-            array_push($elementos, $this->obtener_objeto_paso($fila));
+            array_push($elementos, $this->obtener_objeto_elemento($fila));
         }
         return $elementos;
     }

@@ -4,16 +4,16 @@ class Elemento {
     private $nombre;
     private $fecha_registro;
     private $tipo;
-    private $guias;
-    private $columnas;
+    private $guias = array();
+    private $columnas = array();
 
     private $i_elemento;
 
     private function obtener_guias() {
-        return $this->i_elemento->obtener_guias($this->id);
+        return $this->i_elemento->obtener_guias($this->get_id());
     }
     private function obtener_columnas() {
-        return $this->i_elemento->obtener_columnas($this->id);
+        return $this->i_elemento->obtener_columnas($this->get_id());
     }
 
     public function __construct() {

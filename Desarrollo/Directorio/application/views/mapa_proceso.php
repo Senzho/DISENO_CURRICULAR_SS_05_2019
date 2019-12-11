@@ -20,20 +20,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <li>
             <?php
                 $clase_usuario = $usuario->get_clase_usuario();
-                if ($clase_usuario == Clase_Usuario::JEFE_DDC) {
-                    echo "<a href='" . base_url() . "index.php/Asesor/seleccion/" . $programa_educativo->get_id() . "'>";
-                    echo "<ul>Establecer asesor curricular</ul></a>";
-                } else {
-                    echo "<ul>Establecer asesor curricular</ul>";
-                }
-                $asesor = new Colaborador();
-                $asesor->set_i_colaborador(new Modelo_Colaborador());
-                $asesor = $asesor->obtener_asesor_programa($programa_educativo->get_id());
-                if ($clase_usuario == Clase_Usuario::COLABORADOR && isset($asesor)) {
-                    echo "<a href='" . base_url() . "index.php/Colaboradores/seleccion/" . $programa_educativo->get_id() . "'>";
-                    echo "<ul>Establecer colaboradores</ul></a>";
-                } else {
-                    echo "<ul>Establecer colaboradores</ul>";
+                foreach ($pasos as $paso) {
+                    $nombre = $paso->get_nombre();
+                    if ($nombre == 'Establecer asesor curricular') {
+                        if ($clase_usuario == Clase_Usuario::JEFE_DDC) {
+                            echo "<a href='" . base_url() . "index.php/Asesor/seleccion/" . $programa_educativo->get_id() . "'>";
+                            echo "<ul>Establecer asesor curricular</ul></a>";
+                        } else {
+                            echo "<ul>Establecer asesor curricular</ul>";
+                        }
+                    } else if ($nombre == 'Establecer colaboradores') {
+                        $asesor = new Colaborador();
+                        $asesor->set_i_colaborador(new Modelo_Colaborador());
+                        $asesor = $asesor->obtener_asesor_programa($programa_educativo->get_id());
+                        if ($clase_usuario == Clase_Usuario::COLABORADOR && isset($asesor)) {
+                            echo "<a href='" . base_url() . "index.php/Colaboradores/seleccion/" . $programa_educativo->get_id() . "'>";
+                            echo "<ul>Establecer colaboradores</ul></a>";
+                        } else {
+                            echo "<ul>Establecer colaboradores</ul>";
+                        }
+                    } else {
+                        echo "<a href='" . base_url() . "index.php/Proceso/paso/" . $paso->get_id() . '/' . $programa_educativo->get_id() . "'>";
+                        echo "<ul>" . $nombre . "</a>";
+                    }
                 }
             ?>
         </li>

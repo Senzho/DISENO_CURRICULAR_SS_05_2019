@@ -19,7 +19,7 @@ class Modelo_Elemento extends CI_Model implements I_Elemento {
     }
     public function obtener_columnas($id_elemento) {
         $columnas = array();
-        $conuslta = $this->diseño_db->get_where('columna', array('columna_elemento' => $id_elemento));
+        $consulta = $this->diseño_db->get_where('columna', array('columna_elemento' => $id_elemento));
         foreach ($consulta->result() as $fila) {
             $columna = new Columna();
             $columna->set_id($fila->columna_id);
