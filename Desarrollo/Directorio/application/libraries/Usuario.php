@@ -77,4 +77,16 @@ class Usuario {
     public function obtener_por_clave($clave) {
         return $this->i_usuario->obtener_por_clave($clave);
     }
+    public function obtener_por_id($id) {
+        return $this->i_usuario->obtener_por_id($id);
+    }
+    public function obtener_todos() {
+        return $this->i_usuario->obtener_todos();
+    }
+    public function registrar($numero_personal) {
+        return $this->i_usuario->registrar($this, $numero_personal);
+    }
+    public function modificar($numero_personal) {
+        return $this->i_usuario->modificar($this, $numero_personal);
+    }
 }

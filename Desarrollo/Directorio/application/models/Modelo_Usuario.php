@@ -56,6 +56,7 @@ class Modelo_Usuario extends CI_Model implements I_Usuario {
         $usuario->set_id($id);
         $usuario->set_nombre_usuario($consulta_diseño->row()->usuario_nick);
         $usuario->set_clase_usuario($this->obtener_clase($consulta_diseño->row()->usuario_clase));
+        $usuario->set_contraseña($consulta_diseño->row()->usuario_contraseña);
         $consulta_siu = $this->siu_db->get_where('personal', array('numeroPersonal' => $consulta_diseño->row()->usuario_siu_id));
         $usuario->set_cargo($consulta_siu->row()->cargo);
         $usuario->set_correo($consulta_siu->row()->correo);
@@ -86,5 +87,42 @@ class Modelo_Usuario extends CI_Model implements I_Usuario {
             array_push($usuarios, $usuario);
         }
         return $usuarios;
+    }
+    public function obtener_todos() {
+        $usuarios = array();
+        $consulta_diseño = $this->diseño_db->get('usuario');
+        foreach ($consulta_diseño->result() as $fila) {
+            $usuario = new Usuario();
+            $usuario->set_id($fila->usuario_id);
+            $usuario->set_nombre_usuario($fila->usuario_nick);
+            $usuario->set_clase_usuario($this->obtener_clase($fila->usuario_clase));
+            $consulta_siu = $this->siu_db->get_where('personal', array('numeroPersonal' => $fila->usuario_siu_id));
+            $usuario->set_cargo($consulta_siu->row()->cargo);
+            $usuario->set_correo($consulta_siu->row()->correo);
+            $usuario->set_nombre($consulta_siu->row()->nombre);
+            $usuario->set_region($consulta_siu->row()->region);
+            array_push($usuarios, $usuario);
+        }
+        return $usuarios;
+    }
+    public function registrar($usuario, $numero_personal) {
+        $registrado = FALSE;
+        $arreglo_siu = array('numeroPersonal' => $numero_personal, 'nombre' => $usuario->get_nombre(), 'correo' => $usuario->get_correo(), 'cargo' => $usuario->get_cargo(), 'region' => $usuario->get_region());
+        $arreglo_diseño = array('usuario_nick' => $usuario->get_nombre_usuario(), 'usuario_contraseña' => $usuario->get_correo(), 'usuario_clase' => $usuario->get_clase_usuario(), 'usuario_siu_id' => $numero_personal);
+        if ($this->siu_db->insert('personal', $arreglo_siu)) {
+            $registrado = $this->diseño_db->insert('usuario', $arreglo_diseño);
+        }
+        return $registrado;
+    }
+    public function modificar($usuario, $numero_personal) {
+        $modificado = FALSE;
+        $arreglo_siu = array('numeroPersonal' => $numero_personal, 'nombre' => $usuario->get_nombre(), 'correo' => $usuario->get_correo(), 'cargo' => $usuario->get_cargo(), 'region' => $usuario->get_region());
+        $arreglo_diseño = array('usuario_nick' => $usuario->get_correo(), 'usuario_contraseña' => $usuario->get_correo(), 'usuario_clase' => $usuario->get_clase_usuario(), 'usuario_siu_id' => $numero_personal);
+        $this->siu_db->where('numeroPersonal', $numero_personal);
+        if ($this->siu_db->update('personal', $arreglo_siu)) {
+            $this->diseño_db->where('usuario_id', $usuario->get_id());
+            $modificado = $this->diseño_db->update('usuario', $arreglo_diseño);
+        }
+        return $modificado;
     }
 }
