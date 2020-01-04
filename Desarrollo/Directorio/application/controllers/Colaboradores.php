@@ -10,7 +10,8 @@ class Colaboradores extends CI_Controller {
         $colaborador = new Colaborador();
         $colaborador->set_i_colaborador(new Modelo_Colaborador());
         $colaboradores = $colaborador->obtener_por_programa($id_programa);
-        $this->load->view('colaboradores', array('programa_educativo' => $programa_educativo, 'usuarios' => $usuarios, 'colaboradores' => $colaboradores, 'mensaje' => $mensaje));
+        $usuario_sesion = unserialize($this->session->userdata('usuario'));
+        $this->load->view('colaboradores', array('programa_educativo' => $programa_educativo, 'usuarios' => $usuarios, 'colaboradores' => $colaboradores, 'mensaje' => $mensaje, 'usuario_sesion' => $usuario_sesion));
     }
 
     public function __construct() {

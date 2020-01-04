@@ -6,5 +6,5 @@ interface I_Usuario {
     public function obtener_por_clave($clave);
     public function obtener_todos();
     public function registrar($usuario, $numero_personal);
-    public function modificar($usuario, $numero_personal);
+    public function modificar($usuario, $numero_personal, $numero_personal_original);
 }

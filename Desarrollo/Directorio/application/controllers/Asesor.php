@@ -10,7 +10,8 @@ class Asesor extends CI_Controller {
         $asesor = new Colaborador();
         $asesor->set_i_colaborador(new Modelo_Colaborador());
         $asesor = $asesor->obtener_asesor_programa($id_programa);
-        $this->load->view('asesor_curricular', array('programa_educativo' => $programa_educativo, 'usuarios' => $usuarios, 'asesor' => $asesor, 'mensaje' => $mensaje));
+        $usuario_sesion = unserialize($this->session->userdata('usuario'));
+        $this->load->view('asesor_curricular', array('programa_educativo' => $programa_educativo, 'usuarios' => $usuarios, 'asesor' => $asesor, 'mensaje' => $mensaje, 'usuario_sesion' => $usuario_sesion));
     }
 
     public function __construct() {

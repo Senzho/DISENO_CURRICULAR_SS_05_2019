@@ -48,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </li>
     </div>
     <?php
-        $this->load->view('Bloques/menu_principal');
+        $this->load->view('Bloques/menu_principal', array('clase' => $usuario->get_clase_usuario()));
     ?>
 </body>
 </html>

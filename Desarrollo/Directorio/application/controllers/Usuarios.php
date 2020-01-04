@@ -1,7 +1,7 @@
 <?php
 require_once(APPPATH.'libraries/Clase_Usuario.php');
 
-class Colaboradores extends CI_Controller {
+class Usuarios extends CI_Controller {
     private function usuario_valido() {
         $valido = FALSE;
         if ($this->session->userdata('usuario')) {
@@ -38,9 +38,9 @@ class Colaboradores extends CI_Controller {
         $this->load->model('Modelo_Usuario', 'modelo_usuario');
     }
 
-    public function lista($id = -1) {
+    public function lista($id = -1, $mensaje = '') {
         if ($this->usuario_valido()) {
-            $usuario;
+            $usuario = NULL;
             if ($id > -1) {
                 $usuario = new Usuario();
                 $usuario->set_i_usuario(new Modelo_Usuario());
@@ -49,7 +49,8 @@ class Colaboradores extends CI_Controller {
             $usuario_lista = new Usuario();
             $usuario_lista->set_i_usuario(new Modelo_Usuario());
             $usuarios = $usuario_lista->obtener_todos();
-            //Cargar página con datos
+            $usuario_sesion = unserialize($this->session->userdata('usuario'));
+            $this->load->view('usuarios', array('usuario' => $usuario, 'usuarios' => $usuarios, 'mensaje' => $mensaje, 'usuario_sesion' => $usuario_sesion));
         } else {
             redirect('Inicio/principal');
         }
@@ -60,16 +61,16 @@ class Colaboradores extends CI_Controller {
         if ($usuario->registrar($this->input->post('numero'))) {
             $this->lista();
         } else {
-            //Envia mensaje de error
+            $this->lista(-1, 'Lo sentimos, ocurrió un error al registrar el usuario');
         }
     }
     public function modificar() {
         $usuario = $this->get_usuario_form();
         $usuario->set_i_usuario(new Modelo_Usuario());
-        if ($usuario->modificar($this->input->post('numero'))) {
+        if ($usuario->modificar($this->input->post('numero'), $this->input->post('numero_original'))) {
             $this->lista();
         } else {
-            //Envia mensaje de error
+            $this->lista($usuario->get_id(), 'Lo sentimos, ocurrió un error al actuaizar el usuario');
         }
     }
 }

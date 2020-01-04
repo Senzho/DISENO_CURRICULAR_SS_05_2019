@@ -8,7 +8,13 @@
             <label class="textoBlanco block menuItem">Inicio</label>
         </a>
         <label class="textoBlanco block menuItem">Estadísticas</label>
-        <label class="textoBlanco block menuItem">Personal académico</label>
+        <?php
+            if ($clase == Clase_Usuario::JEFE_DDC || $clase == Clase_Usuario::DIRECTOR_AREA_ACADEMICA) {
+                echo "<a href='" . base_url() ."index.php/Usuarios/lista'>";
+                echo "<label class='textoBlanco block menuItem'>Personal académico</label>";
+                echo "</a>";
+            }
+        ?>
         <label class="textoBlanco block menuItem">Proceso</label>
         <label class="textoBlanco block menuItem">Manual de usuario</label>
         <a href="<?php echo base_url() . 'index.php/Autenticacion/cerrar_sesion';?>">

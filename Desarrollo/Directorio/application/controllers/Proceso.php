@@ -47,7 +47,6 @@ class Proceso extends CI_Controller {
             $programa_educativo->set_id($id_programa);
             $programa_educativo->set_i_programa_educativo(new Modelo_Programa_educativo());
             $programa_educativo = $programa_educativo->obtener_programa_educativo();
-
             $paso = new Paso();
             $paso->set_i_paso(new Modelo_paso());
             $paso = $paso->obtener_paso($id_paso);
@@ -59,7 +58,8 @@ class Proceso extends CI_Controller {
                     $elemento->get_columnas();
                 }
             }
-            $this->load->view('paso', array('paso' => $paso, 'programa_educativo' => $programa_educativo));
+            $usuario_sesion = unserialize($this->session->userdata('usuario'));
+            $this->load->view('paso', array('paso' => $paso, 'programa_educativo' => $programa_educativo, 'usuario_sesion' => $usuario_sesion));
         } else {
             redirect('Autenticacion/principal', 'location');
         }

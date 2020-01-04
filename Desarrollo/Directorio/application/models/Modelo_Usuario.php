@@ -62,6 +62,7 @@ class Modelo_Usuario extends CI_Model implements I_Usuario {
         $usuario->set_correo($consulta_siu->row()->correo);
         $usuario->set_nombre($consulta_siu->row()->nombre);
         $usuario->set_region($consulta_siu->row()->region);
+        $usuario->set_numero_personal($consulta_siu->row()->numeroPersonal);
         return $usuario;
     }
     public function obtener_por_clave($clave) {
@@ -114,11 +115,11 @@ class Modelo_Usuario extends CI_Model implements I_Usuario {
         }
         return $registrado;
     }
-    public function modificar($usuario, $numero_personal) {
+    public function modificar($usuario, $numero_personal, $numero_personal_original) {
         $modificado = FALSE;
         $arreglo_siu = array('numeroPersonal' => $numero_personal, 'nombre' => $usuario->get_nombre(), 'correo' => $usuario->get_correo(), 'cargo' => $usuario->get_cargo(), 'region' => $usuario->get_region());
         $arreglo_diseño = array('usuario_nick' => $usuario->get_correo(), 'usuario_contraseña' => $usuario->get_correo(), 'usuario_clase' => $usuario->get_clase_usuario(), 'usuario_siu_id' => $numero_personal);
-        $this->siu_db->where('numeroPersonal', $numero_personal);
+        $this->siu_db->where('numeroPersonal', $numero_personal_original);
         if ($this->siu_db->update('personal', $arreglo_siu)) {
             $this->diseño_db->where('usuario_id', $usuario->get_id());
             $modificado = $this->diseño_db->update('usuario', $arreglo_diseño);

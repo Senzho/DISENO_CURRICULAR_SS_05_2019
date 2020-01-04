@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     <label><?php echo $mensaje;?></label>
     <?php
-        $this->load->view('Bloques/menu_principal');
+        $this->load->view('Bloques/menu_principal', array('clase' => $usuario_sesion->get_clase_usuario()));
     ?>
 </body>
 </html>

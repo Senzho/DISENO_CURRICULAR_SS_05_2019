@@ -10,7 +10,8 @@ class Solicitud extends CI_Controller {
         return $programa_educativo;
     }
     private function mostrar_vista_principal($programa_educativo, $mensaje) {
-        $this->load->view('solicitar_asesoria', array('programa_educativo' => $programa_educativo, 'mensaje' => $mensaje));
+        $usuario_sesion = unserialize($this->session->userdata('usuario'));
+        $this->load->view('solicitar_asesoria', array('programa_educativo' => $programa_educativo, 'mensaje' => $mensaje, 'usuario_sesion' => $usuario_sesion));
     }
 
     public function __construct() {

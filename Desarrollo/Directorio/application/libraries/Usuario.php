@@ -8,6 +8,7 @@ class Usuario {
     private $cargo;
     private $region;
     private $clase_usuario;
+    private $numero_personal;
 
     private $i_usuario;
 
@@ -63,6 +64,12 @@ class Usuario {
     public function get_clase_usuario() {
         return $this->clase_usuario;
     }
+    public function set_numero_personal($numero_personal) {
+        $this->numero_personal = $numero_personal;
+    }
+    public function get_numero_personal() {
+        return $this->numero_personal;
+    }
 
     public function set_i_usuario($i_usuario) {
         $this->i_usuario = $i_usuario;
@@ -86,7 +93,7 @@ class Usuario {
     public function registrar($numero_personal) {
         return $this->i_usuario->registrar($this, $numero_personal);
     }
-    public function modificar($numero_personal) {
-        return $this->i_usuario->modificar($this, $numero_personal);
+    public function modificar($numero_personal, $numero_personal_original) {
+        return $this->i_usuario->modificar($this, $numero_personal, $numero_personal_original);
     }
 }
